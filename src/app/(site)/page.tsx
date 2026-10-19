@@ -30,7 +30,7 @@ export default function HomePage() {
   return (
     <>
       <section className="relative flex h-[520px] items-center">
-        <Image src="/media/2026/01/DSC03495-scaled.jpg" alt="" fill priority className="object-cover" />
+        <Image src="/media/2026/01/DSC01606-scaled.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/35" />
         <div className="container-site relative text-white">
           <h1 className="text-4xl desktop:text-5xl">Careers - at S.E.A.T.S Inc.</h1>
@@ -42,6 +42,9 @@ export default function HomePage() {
       </section>
 
       <section className="container-site grid items-center gap-10 py-20 desktop:grid-cols-2">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+          <Image src="/media/2026/01/DSC03495-scaled.jpg" alt="" fill className="object-cover" />
+        </div>
         <div>
           <h2 className="text-3xl text-primary">Company Goal</h2>
           <div className="mt-4 space-y-4 text-text">
@@ -59,20 +62,51 @@ export default function HomePage() {
             <p>We are proud of what we have accomplished. Vital has made its high standard recognized.</p>
           </div>
         </div>
-        <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full">
-          <Image src="/media/2023/03/ceo-1.jpeg" alt="CEO" fill className="object-cover" />
-        </div>
       </section>
 
-      <section className="bg-gradient-to-b from-sky-100 to-white py-20">
-        <div className="container-site grid gap-10 desktop:grid-cols-2">
+      <section className="bg-gradient-to-b from-white via-sky-100 to-sky-100 py-20">
+        <div className="container-site flex flex-col items-center gap-10 desktop:flex-row">
+          <div className="relative size-[220px] shrink-0 overflow-hidden rounded-full">
+            <Image src="/media/2023/03/ceo-1.jpeg" alt="Kosuke Mineshima" fill className="object-cover" />
+          </div>
+          <div>
+            <h2 className="text-3xl text-heading">Message From Managements</h2>
+            <p className="mt-4 text-4xl leading-none text-primary/40">&ldquo;</p>
+            <div className="-mt-6 space-y-4 text-text">
+              <p>Bringing wisdom and experiences acquired in Japan and surrounded nations to Cambodia.</p>
+              <p>&ldquo;Creating people, things, and ideas from Cambodia&rdquo;, this is S.E.A.T.S Inc.&rsquo;s imperative responsibility.</p>
+              <p>
+                Bringing wisdom and experiences acquired in Japan and surrounded nations to Cambodia. We make full use
+                of Cambodia&rsquo;s strength, maximize the on-site productivity, and produce &ldquo;power&rdquo; from
+                Cambodia that can compete in the world.
+              </p>
+              <p>
+                S.E.A.T.S Inc. believes that doing business on a real-site is everything. We continuously push forward
+                the grounded businesses, and by that, we aspire to meet imperative responsibilities.
+              </p>
+              <p className="pt-2 font-semibold text-heading">
+                Director &amp; CEO
+                <br />
+                Kosuke Mineshima
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="container-site mt-16 grid gap-10 desktop:grid-cols-2">
           <div>
             <h3 className="text-2xl text-heading">Vision</h3>
-            <p className="mt-3 text-text">Keep generating something new for the happiness of all stakeholders.</p>
+            <div className="relative mt-4 aspect-[1000/234] w-full">
+              <Image src="/media/2023/03/Mission-1.png" alt="" fill className="object-contain object-left" />
+            </div>
+            <p className="mt-3 text-center text-text">Keep generating something new for the happiness of all stakeholders.</p>
           </div>
           <div>
             <h3 className="text-2xl text-heading">Mission</h3>
-            <p className="mt-3 text-text">
+            <div className="relative mt-4 aspect-[1000/234] w-full">
+              <Image src="/media/2023/03/Vision-2.png" alt="" fill className="object-contain object-left" />
+            </div>
+            <p className="mt-3 text-center text-text">
               From Cambodia to the World, With US
               <br />
               Create the Product, Service and People competitive in the World.

@@ -27,14 +27,9 @@ const TEAMS = [
 export default function TeamPage() {
   return (
     <>
-      <section className="container-site py-16 text-center">
-        <h1 className="text-3xl text-primary">TEAMS</h1>
-        <p className="mt-1 text-sm text-muted">សារពី S.E.A.T.S Inc. ទៅកាន់អ្នក</p>
-      </section>
-
       <section className="bg-surface py-20">
         <div className="container-site">
-          <h2 className="text-2xl text-primary">INTERVIEWS</h2>
+          <h1 className="text-3xl text-primary">INTERVIEWS</h1>
           <p className="mt-1 text-sm text-muted">ការសម្ភាសន៍ ប្រធានគ្រប់គ្រង​ នីមួយៗក្នុងក្រុមហ៊ុន</p>
           <div className="mt-10 grid gap-6 desktop:grid-cols-2">
             {TEAMS.map((t) => (
