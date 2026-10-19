@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getOpenJob, listOpenJobs } from "@/lib/jobs";
+import { getHrContact } from "@/lib/settings";
 import { TELEGRAM_HR } from "@/lib/links";
 import HrContactCard from "@/components/HrContactCard";
 
@@ -23,7 +24,7 @@ const INFO_ROWS = (job: { jobType: string; salaryRange: string; workDays: string
 
 export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]">) {
   const { slug } = await params;
-  const job = await getOpenJob(slug);
+  const [job, contact] = await Promise.all([getOpenJob(slug), getHrContact()]);
   if (!job) notFound();
 
   return (
@@ -59,7 +60,7 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
       </article>
 
       <aside>
-        <HrContactCard />
+        <HrContactCard contact={contact} />
       </aside>
     </div>
   );

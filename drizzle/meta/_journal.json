@@ -8,6 +8,13 @@
       "when": 1792387525700,
       "tag": "0000_massive_vector",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792389464635,
+      "tag": "0001_majestic_iron_monger",
+      "breakpoints": true
     }
   ]
 }

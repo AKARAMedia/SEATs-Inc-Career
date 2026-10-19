@@ -24,3 +24,15 @@ export async function getOpenJob(slug: string): Promise<PublicJob | null> {
   const [row] = await db.select().from(jobs).where(eq(jobs.slug, slug));
   return row && row.open ? row : null;
 }
+
+/** Admin: every job regardless of open/closed status, always fresh. */
+export async function listAllJobs(): Promise<PublicJob[]> {
+  await ready();
+  return db.select().from(jobs).orderBy(asc(jobs.sortOrder));
+}
+
+export async function getJobById(id: number): Promise<PublicJob | null> {
+  await ready();
+  const [row] = await db.select().from(jobs).where(eq(jobs.id, id));
+  return row ?? null;
+}
