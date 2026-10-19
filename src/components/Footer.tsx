@@ -15,9 +15,7 @@ export default function Footer() {
           <span className="text-xs">អំពីការងារ</span>
         </Link>
       </div>
-      <div className="border-t border-white/15 py-4 text-center text-xs">
-        Copyright © {new Date().getFullYear()} | S.E.A.T.S Career.
-      </div>
+      <div className="border-t border-white/15 py-4 text-center text-xs">Copyright © 2026 | S.E.A.T.S Career.</div>
     </footer>
   );
 }
