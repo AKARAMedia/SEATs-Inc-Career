@@ -1,38 +1,25 @@
 import "server-only";
-import { cacheLife, cacheTag } from "next/cache";
-import { asc, eq } from "drizzle-orm";
+import { cacheLife } from "next/cache";
+import { and, asc, eq } from "drizzle-orm";
 import { db, ready } from "@/db";
 import { jobs } from "@/db/schema";
 
-export const JOBS_TAG = "jobs";
-
 export type PublicJob = typeof jobs.$inferSelect;
 
+// Edits happen in the seats-inc.com admin panel, a separate deployment — this app has no
+// way to receive an instant cache-invalidation signal from it, so edits show up within a
+// few minutes instead of immediately. Acceptable staleness for job postings.
 export async function listOpenJobs(): Promise<PublicJob[]> {
   "use cache";
-  cacheTag(JOBS_TAG);
-  cacheLife("hours");
+  cacheLife("minutes");
   await ready();
-  return db.select().from(jobs).where(eq(jobs.open, true)).orderBy(asc(jobs.sortOrder));
+  return db.select().from(jobs).where(and(eq(jobs.site, "career"), eq(jobs.open, true))).orderBy(asc(jobs.sortOrder));
 }
 
 export async function getOpenJob(slug: string): Promise<PublicJob | null> {
   "use cache";
-  cacheTag(JOBS_TAG);
-  cacheLife("hours");
+  cacheLife("minutes");
   await ready();
-  const [row] = await db.select().from(jobs).where(eq(jobs.slug, slug));
+  const [row] = await db.select().from(jobs).where(and(eq(jobs.site, "career"), eq(jobs.slug, slug)));
   return row && row.open ? row : null;
-}
-
-/** Admin: every job regardless of open/closed status, always fresh. */
-export async function listAllJobs(): Promise<PublicJob[]> {
-  await ready();
-  return db.select().from(jobs).orderBy(asc(jobs.sortOrder));
-}
-
-export async function getJobById(id: number): Promise<PublicJob | null> {
-  await ready();
-  const [row] = await db.select().from(jobs).where(eq(jobs.id, id));
-  return row ?? null;
 }

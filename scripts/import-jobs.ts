@@ -44,6 +44,7 @@ async function main() {
       .insert(jobs)
       .values({
         slug: j.slug,
+        site: "career",
         title: decode(j.title),
         wpId: j.id,
         sortOrder: i,
@@ -52,7 +53,7 @@ async function main() {
       })
       .onConflictDoUpdate({
         target: jobs.slug,
-        set: { title: decode(j.title), sortOrder: i, updatedAt: new Date(), ...parsed },
+        set: { title: decode(j.title), sortOrder: i, ...parsed },
       });
     console.log("job", j.slug);
   }
