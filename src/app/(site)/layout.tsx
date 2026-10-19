@@ -3,7 +3,7 @@ import { Open_Sans, Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingApplyButton from "@/components/FloatingApplyButton";
-import "./globals.css";
+import "../globals.css";
 
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-open-sans", display: "swap" });
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-montserrat", display: "swap" });
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "S.E.A.T.S Inc.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${openSans.variable} ${montserrat.variable}`}>
       <body className="flex min-h-screen flex-col antialiased">
