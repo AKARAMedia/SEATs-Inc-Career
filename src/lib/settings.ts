@@ -1,9 +1,9 @@
 import "server-only";
-import { cacheLife } from "next/cache";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, ready } from "@/db";
 import { siteSettings } from "@/db/schema";
+import { withTtlCache } from "@/lib/ttl-cache";
 
 // Matches the "careerHrContact" settings group key in the seats-inc.com admin panel —
 // that's the single source of truth; this app only ever reads it.
@@ -24,11 +24,9 @@ const DEFAULT_HR_CONTACT: HrContact = {
   address: "Street 388, Sangkat Toul Svay Prey, 1, Phnom Penh.",
 };
 
-export async function getHrContact(): Promise<HrContact> {
-  "use cache";
-  cacheLife("minutes");
+export const getHrContact = withTtlCache("getHrContact", 5 * 60 * 1000, async (): Promise<HrContact> => {
   await ready();
   const [row] = await db.select().from(siteSettings).where(eq(siteSettings.key, HR_CONTACT_KEY));
   const parsed = row ? HrContactSchema.safeParse(row.value) : null;
   return parsed?.success ? parsed.data : DEFAULT_HR_CONTACT;
-}
+});
