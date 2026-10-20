@@ -33,7 +33,7 @@ export default function HomePage() {
         <Image src="/media/2026/01/DSC01606-scaled.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/35" />
         <div className="container-site relative text-white">
-          <h1 className="text-4xl desktop:text-5xl">Careers - at S.E.A.T.S Inc.</h1>
+          <h1 className="text-4xl text-white desktop:text-5xl">Careers - at S.E.A.T.S Inc.</h1>
           <p className="mt-2 text-xl">Learn and earn, together</p>
           <a href={TELEGRAM_RECRUIT} target="_blank" rel="noopener noreferrer" className="btn-outline mt-6 w-fit">
             Join Talent Community

@@ -21,14 +21,19 @@ const VIDEOS = [
 export default function WorkPage() {
   return (
     <>
-      <section className="container-site grid items-center gap-10 py-20 desktop:grid-cols-2">
-        <div>
-          <h1 className="text-3xl text-primary">Mission</h1>
-          <p className="text-sm text-muted">បេសកកម្ម របស់យើង !</p>
-          <h2 className="mt-6 text-2xl text-heading">
-            For Growth, Changes, Challenges, &amp; For US With S.E.A.T.S Inc.
-          </h2>
-          <div className="mt-4 space-y-4 text-text">
+      <section className="container-site py-20">
+        <div className="relative">
+          <div className="pointer-events-none absolute left-40 top-1/2 hidden w-[1000px] -translate-y-1/2 desktop:block" style={{ aspectRatio: "4536 / 877" }}>
+            <Image src="/media/2022/10/Our-Mission.png" alt="" fill className="object-contain object-left mix-blend-multiply" />
+          </div>
+          <div className="relative">
+            <h1 className="text-3xl text-primary">Mission</h1>
+            <p className="mt-1 text-sm text-muted">បេសកកម្ម របស់យើង !</p>
+          </div>
+        </div>
+        <div className="mt-10 grid items-center gap-10 desktop:grid-cols-2">
+          <div className="space-y-4 text-text">
+            <p>For Growth, Changes, Challenges, &amp; For US With S.E.A.T.S Inc.</p>
             <p>
               We provide an environment and an opportunity to those that seek challenges to further improvement of
               their better selves.
@@ -38,9 +43,9 @@ export default function WorkPage() {
               they needed are the key to unlock those.
             </p>
           </div>
-        </div>
-        <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-surface">
-          <Image src="/media/2022/10/Our-Mission.png" alt="" fill className="object-contain p-10" />
+          <div className="relative hidden aspect-[608/255] w-full desktop:block">
+            <Image src="/media/2022/10/d.png" alt="" fill className="object-contain" />
+          </div>
         </div>
       </section>
 

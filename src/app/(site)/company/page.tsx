@@ -5,22 +5,26 @@ import VideoPlaylist from "@/components/VideoPlaylist";
 const LIFE_CARDS = [
   {
     title: "LEARNING",
-    icon: <LearningIcon />,
+    image: "/media/2022/10/3.png",
+    aspect: "689/390",
     text: "At S.E.A.T.S Inc., our greatest assets are our people and everything we do aims to ensure that our people realise their fullest potential. Opportunities to learn new knowledge and skills, therefore, are strongly encouraged and heavily invested in. We always look first for promotion from within.",
   },
   {
     title: "TIME OFF",
-    icon: <ClockIcon />,
+    image: "/media/2022/10/time-out.jpg",
+    aspect: "750/430",
     text: "We understand that, besides their career, our employees need time to recharge their batteries, enjoy time with their families and pursue individual goals in their personal time. At S.E.A.T.S Inc., we offer compensated time off to ensure that our employees benefit from a healthy work-life balance.",
   },
   {
     title: "GIVING BACK",
-    icon: <ArrowsIcon />,
+    image: "/media/2022/10/gaiv-back.jpg",
+    aspect: "750/430",
     text: "Giving back is at the heart of S.E.A.T.S Inc., We seriously care about our community.",
   },
   {
     title: "REWARDS",
-    icon: <AwardIcon />,
+    image: "/media/2022/10/4.png",
+    aspect: "688/394",
     text: "Giving back is at the heart of S.E.A.T.S Inc., We seriously care about our community.",
   },
 ];
@@ -44,13 +48,20 @@ export default function CompanyPage() {
   return (
     <>
       <section className="container-site py-20">
-        <h1 className="text-3xl text-primary">LIFE AT S.E.A.T.S Inc.</h1>
-        <p className="mt-1 text-sm text-muted">ជីវិតនៅ S.E.A.T.S Inc.</p>
+        <div className="relative">
+          <div className="pointer-events-none absolute -right-6 -top-10 hidden w-40 desktop:block">
+            <Image src="/media/2022/10/comapny.png" alt="" width={279} height={212} className="h-auto w-full" />
+          </div>
+          <h1 className="text-3xl text-primary">LIFE AT S.E.A.T.S Inc.</h1>
+          <p className="mt-1 text-sm text-muted">ជីវិតនៅ S.E.A.T.S Inc.</p>
+        </div>
         <div className="mt-10 grid gap-6 desktop:grid-cols-2">
           {LIFE_CARDS.map((c) => (
-            <div key={c.title} className="overflow-hidden rounded-xl ring-1 ring-border">
-              <div className="flex h-28 items-center justify-center bg-primary text-white">{c.icon}</div>
-              <div className="bg-white p-6">
+            <div key={c.title} className="overflow-hidden rounded-xl bg-white ring-1 ring-border">
+              <div className="relative w-full" style={{ aspectRatio: c.aspect }}>
+                <Image src={c.image} alt="" fill className="object-cover" />
+              </div>
+              <div className="p-6">
                 <h3 className="text-center text-lg font-bold text-primary">{c.title}</h3>
                 <p className="mt-3 text-sm text-text">{c.text}</p>
               </div>
@@ -74,8 +85,17 @@ export default function CompanyPage() {
       </section>
 
       <section className="container-site py-20">
-        <h2 className="text-3xl text-primary">Message</h2>
-        <p className="mt-1 text-sm text-muted">សារពីផ្នែក ធនធានមនុស្ស​!</p>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-x-0 top-0 hidden desktop:block">
+            <div className="relative mx-auto aspect-[3318/877] w-full max-w-4xl">
+              <Image src="/media/2022/10/Message-1.png" alt="" fill className="object-contain mix-blend-multiply" />
+            </div>
+          </div>
+          <div className="relative">
+            <h2 className="text-3xl text-primary">Message</h2>
+            <p className="mt-1 text-sm text-muted">សារពីផ្នែក ធនធានមនុស្ស​!</p>
+          </div>
+        </div>
         <div className="mt-6 max-w-3xl space-y-4 text-text">
           <p>Everyone is the same but those that seek challenges and improvement will be further ahead of the result!</p>
           <p>
@@ -87,6 +107,12 @@ export default function CompanyPage() {
             decide what you want to hold in the future!
           </p>
         </div>
+      </section>
+
+      <section className="container-site pb-10">
+        <a href="https://seats-inc.com/en/home-2/" target="_blank" rel="noopener noreferrer" className="relative block aspect-[2560/350] w-full">
+          <Image src="/media/2022/10/banner-jump-to-seatsinc-scaled.jpg" alt="S.E.A.T.S Inc." fill className="object-cover" />
+        </a>
       </section>
 
       <section className="bg-gradient-to-b from-primary to-white py-20 text-white">
@@ -101,40 +127,5 @@ export default function CompanyPage() {
 
       <CtaApplyBand title="Are You Ready to Apply !" />
     </>
-  );
-}
-
-function LearningIcon() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <path d="M3 20h18M5 20V9l5-3 5 3v11M13 20v-6h4v6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M8 13h.01M8 16h.01" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ArrowsIcon() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <path d="M4 6l6 6-6 6M12 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function AwardIcon() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <circle cx="12" cy="8" r="5" />
-      <path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   );
 }

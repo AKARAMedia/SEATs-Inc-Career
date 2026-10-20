@@ -9,7 +9,7 @@ export default function CtaApplyBand({ title = "Are you Ready to Apply !" }: { t
           <Image src="/media/2024/05/joint-with-us.jpg" alt="" fill className="object-cover" />
         </div>
         <div className="flex flex-col justify-center gap-4 bg-primary px-8 py-10 text-white">
-          <h2 className="text-3xl">{title}</h2>
+          <h2 className="text-3xl text-white">{title}</h2>
           <p className="text-sm text-white/80">សូមចុចទីនេះដើម្បីដាក់ពាក្យធ្វើការ</p>
           <Link href="/jobs" className="btn-outline w-fit">
             SEARCH JOBS <span aria-hidden className="ml-1.5">→</span>
