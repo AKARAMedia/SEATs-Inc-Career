@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
   // Keep WordPress-style URLs (/jobs/, /work/) so existing links and SEO carry over
@@ -30,3 +31,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Wires up local wrangler dev bindings (e.g. DATABASE_URL from .dev.vars); no-op in production builds.
+initOpenNextCloudflareForDev();
