@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import AutoRefresh from "@/components/AutoRefresh";
 import JobCard from "@/components/JobCard";
+import JobsUnavailable from "@/components/JobsUnavailable";
 import JobsFilters from "@/components/JobsFilters";
 import JobsLimitSelect from "@/components/JobsLimitSelect";
 import { DEPARTMENTS, departmentLogo } from "@/lib/departments";
-import { listOpenJobs } from "@/lib/jobs";
+import { loadOpenJobs } from "@/lib/jobs";
 import { jobsHref, type JobsQuery } from "@/lib/jobs-url";
 import { TELEGRAM_HR } from "@/lib/links";
 
@@ -86,7 +88,7 @@ type SearchParams = { [key: string]: string | string[] | undefined };
 
 export default async function JobsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const params = await searchParams;
-  const allJobs = await listOpenJobs();
+  const { jobs: allJobs, unavailable } = await loadOpenJobs();
 
   const q = firstValue(params.q).trim();
   const department = firstValue(params.department).trim();
@@ -125,6 +127,7 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
 
   return (
     <>
+      <AutoRefresh />
       <section className="relative flex min-h-[420px] items-center justify-center text-center">
         <Image src="/media/2026/01/DSC01606-scaled.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/35" />
@@ -150,9 +153,11 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
 
         <h2 className="mt-12 text-2xl text-primary">WE ARE LOOKING FOR</h2>
         <JobsFilters limit={limit} q={q} department={department} type={type} departments={departments} types={types} />
-        <p className="mt-4 text-sm text-muted" aria-live="polite">
-          {filteredJobs.length} {filteredJobs.length === 1 ? "job" : "jobs"} found
-        </p>
+        {!unavailable && (
+          <p className="mt-4 text-sm text-muted" aria-live="polite">
+            {filteredJobs.length} {filteredJobs.length === 1 ? "job" : "jobs"} found
+          </p>
+        )}
         <ul className="mt-4 grid grid-cols-1 gap-4 tablet:grid-cols-2">
           {openJobs.map((job, i) => (
             <li key={job.slug} className="h-full">
@@ -160,7 +165,8 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
             </li>
           ))}
         </ul>
-        {filteredJobs.length === 0 && (
+        {unavailable && <JobsUnavailable className="mt-4" />}
+        {!unavailable && filteredJobs.length === 0 && (
           <p className="rounded-xl bg-surface p-10 text-center text-text">
             No jobs match your search. Try different keywords or clear the filters.
           </p>
