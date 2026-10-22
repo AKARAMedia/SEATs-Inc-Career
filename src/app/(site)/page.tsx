@@ -4,27 +4,44 @@ import CtaApplyBand from "@/components/CtaApplyBand";
 
 const INTERVIEWS = [
   {
-    name: "Kimleng Chea",
-    role: "DIGITAL PROMOTION",
-    photo: "/media/2023/03/interviews-kimleng-1.jpg",
-    quote:
-      "I've been working at S.E.A.T.S Inc., for 2 years above, I'm a Digital Representative of BOSBA which serve Frozen&Dried items to Consumer. I love the working environment in here it's very valuable to the employer as me. In here, Company give a chance to move forward into a new role to develop yourselves. In the every Kick-off Company suggest to all member who willing to develop any skills can be request.",
-  },
-  {
     name: "Phatya Seng",
-    role: "SALE PROMOTION & ADMIN",
-    photo: "/media/2023/03/interviews-pathaya.jpg",
+    role: "SALES PROMOTION SUPERVISOR",
+    photo: "/media/2026/10/interview-phatya.jpg",
     quote:
-      "About 6 years 3 months and I can say that our working environment seem like home, 2nd home. I can enjoy during working, but support and guiding eachother to make our company grow up and ourselves too. Base on my position, Sale and Promotion Admin, I have more opportunities to know and learn both from customers.",
+      "10 years in, my biggest challenge has been adapting as the company grows: team structures shift, roles blur and workloads rise. It built my problem-solving, communication and ownership. I stay for the chance to grow, take on new responsibilities and help teammates reach their goals.",
   },
   {
     name: "Linda Ny",
     role: "OPERATION CONTROL",
-    photo: "/media/2023/03/interviews-linda.jpg",
+    photo: "/media/2026/10/interview-linda.jpg",
     quote:
-      "I've been working here around 1 year and a half. I enjoy working here with everyone, especially my team they're so friendly and helpful. Fun, Challenging and you need to be flexible all the times. Everyone here has an opportunity to take on new challenges and learn more things this can look like a new role with more responsibilities and sometimes they could learn by following the action policies of the company.",
+      "4.5 years and still going strong. Juggling orders, payments, deliveries and last-minute issues is messy but never boring; it keeps me thinking fast and organized. What keeps me here is the team energy: we support each other, communicate openly and solve problems together.",
+  },
+  {
+    name: "Kazuhiro Okuda",
+    role: "GENERAL MANAGER, AGRI-BUSINESS",
+    photo: "/media/2026/10/interview-okuda.jpg",
+    quote:
+      "Our dedicated General Manager in Agri-Business, and a key part of our growth since day one. Stay tuned for his inspiring journey.",
+  },
+  {
+    name: "Poch Bunthy",
+    role: "GENERAL MANAGER, NOVA MARKETING",
+    photo: "/media/2026/10/interview-bunthy.jpg",
+    quote:
+      "Our visionary General Manager, shaping Nova Marketing's journey since day one. His dedication and leadership are at the heart of our success. Stay tuned for his story.",
   },
 ];
+
+// Speech-bubble colours (deep enough for white text) and a slightly different tilt per card
+const BUBBLES = [
+  { color: "#0b7f90", clip: "polygon(0 7%, 38% 0, 100% 9%, 97% 100%, 2% 93%)" },
+  { color: "#6b3a8a", clip: "polygon(0 4%, 62% 10%, 100% 0, 98% 94%, 3% 100%)" },
+  { color: "#1f7a4f", clip: "polygon(2% 0, 100% 8%, 96% 100%, 0 92%)" },
+  { color: "#c2570c", clip: "polygon(0 9%, 55% 0, 100% 6%, 97% 100%, 4% 95%)" },
+];
+
+const DOTS = "radial-gradient(currentColor 1.6px, transparent 1.6px)";
 
 export default function HomePage() {
   return (
@@ -115,22 +132,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-site py-20">
-        <h2 className="text-3xl text-primary">Interviews</h2>
-        <p className="mt-1 text-sm text-muted">សម្ភាសន៍ សមាជិករបស់យើង !</p>
-        <div className="mt-8 grid gap-6 desktop:grid-cols-3">
-          {INTERVIEWS.map((i) => (
-            <div key={i.name} className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-border">
-              <div className="relative h-44">
-                <Image src={i.photo} alt={i.name} fill className="object-cover" />
-              </div>
-              <div className="p-5">
-                <p className="text-xs font-bold uppercase text-primary">{i.role}</p>
-                <p className="font-semibold text-heading">{i.name}</p>
-                <p className="mt-3 text-sm text-text">{i.quote}</p>
-              </div>
-            </div>
-          ))}
+      <section className="relative overflow-hidden bg-white py-20">
+        <div
+          aria-hidden
+          className="absolute -right-6 top-6 h-44 w-56 text-logo-green/50"
+          style={{ backgroundImage: DOTS, backgroundSize: "14px 14px" }}
+        />
+        <div
+          aria-hidden
+          className="absolute -left-6 bottom-10 h-56 w-44 text-accent/50"
+          style={{ backgroundImage: DOTS, backgroundSize: "14px 14px" }}
+        />
+
+        <div className="container-site relative">
+          <h2 className="text-3xl text-primary">
+            Life at <span className="text-logo-green">S.E.A.T.S</span>
+          </h2>
+          <p className="mt-1 text-sm text-muted">សម្ភាសន៍ សមាជិករបស់យើង !</p>
+
+          <div className="mt-10 grid gap-x-5 gap-y-10 tablet:grid-cols-2 desktop:grid-cols-4">
+            {INTERVIEWS.map((i, n) => {
+              const bubble = BUBBLES[n % BUBBLES.length];
+              return (
+                <figure key={i.name} className="flex flex-col">
+                  <div className="relative aspect-square overflow-hidden shadow-lg">
+                    <Image src={i.photo} alt={i.name} fill className="object-cover object-top" />
+                  </div>
+
+                  <div className="relative z-10 -mx-2 -mt-14 flex-1">
+                    <div
+                      aria-hidden
+                      className="absolute -top-2 left-3 h-5 w-2/5 bg-white/30"
+                      style={{ clipPath: "polygon(0 100%, 12% 0, 100% 40%, 96% 100%)" }}
+                    />
+                    <div
+                      className="relative flex h-full flex-col px-6 pb-8 pt-7 text-white shadow-lg"
+                      style={{ backgroundColor: bubble.color, clipPath: bubble.clip }}
+                    >
+                      <span aria-hidden className="absolute right-5 top-3 font-heading text-4xl leading-none text-white/90">
+                        &rdquo;
+                      </span>
+                      <span aria-hidden className="font-heading text-4xl leading-none text-white/90">
+                        &ldquo;
+                      </span>
+                      <blockquote className="-mt-1 text-[13px] leading-relaxed">{i.quote}</blockquote>
+                      <figcaption className="mt-4 border-t border-white/30 pt-3">
+                        <span className="block font-semibold">{i.name}</span>
+                        <span className="block text-[11px] font-bold uppercase tracking-wide text-white/80">{i.role}</span>
+                      </figcaption>
+                    </div>
+                  </div>
+                </figure>
+              );
+            })}
+          </div>
         </div>
       </section>
 
