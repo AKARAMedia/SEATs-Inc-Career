@@ -20,6 +20,9 @@ const VIDEOS = [
   { title: "4 One For All | Four Mindsets /S.E.A.T.S Inc.", youtubeId: "r77ewf-3Wu4", duration: "0:16", thumbnail: "/media/2022/11/4.jpg" },
 ];
 
+// The announced jobs come from the live jobs API (an uncached fetch), so render per request instead of at build time
+export const dynamic = "force-dynamic";
+
 export default async function WorkPage() {
   const openJobs = await listOpenJobs();
   const announced = JOB_ANNOUNCEMENT_SLUGS.flatMap((slug) => openJobs.find((j) => j.slug === slug) ?? []);
