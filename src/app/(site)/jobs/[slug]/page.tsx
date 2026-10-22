@@ -3,21 +3,21 @@ import { notFound } from "next/navigation";
 import { departmentLogo } from "@/lib/departments";
 import { postedLabel } from "@/lib/job-format";
 import { splitJobDescription, type SectionKind } from "@/lib/job-sections";
-import { getOpenJob, listOpenJobs } from "@/lib/jobs";
+import { getOpenJob, JobsUnavailableError } from "@/lib/jobs";
 import { getHrContact } from "@/lib/settings";
 import { TELEGRAM_HR } from "@/lib/links";
+import AutoRefresh from "@/components/AutoRefresh";
 import BackToJobs from "@/components/BackToJobs";
+import JobsUnavailable from "@/components/JobsUnavailable";
 import HrContactCard from "@/components/HrContactCard";
 import JobIcon from "@/components/JobIcon";
 
-export async function generateStaticParams() {
-  const openJobs = await listOpenJobs();
-  return openJobs.map((j) => ({ slug: j.slug }));
-}
+// Job data and department logos come from the live jobs API, so render per request (not at build time)
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: PageProps<"/jobs/[slug]">) {
   const { slug } = await params;
-  const job = await getOpenJob(slug);
+  const job = await getOpenJob(slug).catch(() => null);
   return { title: job?.title ?? "Job" };
 }
 
@@ -48,7 +48,22 @@ function Section({ title, html, className = "" }: { title: string; html: string;
 
 export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]">) {
   const { slug } = await params;
-  const [job, contact] = await Promise.all([getOpenJob(slug), getHrContact()]);
+  let job;
+  let contact;
+  try {
+    [job, contact] = await Promise.all([getOpenJob(slug), getHrContact()]);
+  } catch (err) {
+    if (!(err instanceof JobsUnavailableError)) throw err;
+    return (
+      <div className="container-site py-10 tablet:py-12">
+        <AutoRefresh />
+        <div className="mb-5">
+          <BackToJobs />
+        </div>
+        <JobsUnavailable />
+      </div>
+    );
+  }
   if (!job) notFound();
 
   const logo = departmentLogo(job.department);
@@ -64,6 +79,7 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
 
   return (
     <div className="container-site py-10 tablet:py-12">
+      <AutoRefresh />
       <div className="mb-5">
         <BackToJobs />
       </div>

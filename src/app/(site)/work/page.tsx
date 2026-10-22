@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import AutoRefresh from "@/components/AutoRefresh";
 import JobCard from "@/components/JobCard";
 import CtaApplyBand from "@/components/CtaApplyBand";
 import VideoPlaylist from "@/components/VideoPlaylist";
-import { listOpenJobs } from "@/lib/jobs";
+import { loadOpenJobs } from "@/lib/jobs";
 
 const JOB_ANNOUNCEMENT_SLUGS = [
   "product-development-agribusiness",
@@ -24,11 +25,12 @@ const VIDEOS = [
 export const dynamic = "force-dynamic";
 
 export default async function WorkPage() {
-  const openJobs = await listOpenJobs();
+  const { jobs: openJobs } = await loadOpenJobs();
   const announced = JOB_ANNOUNCEMENT_SLUGS.flatMap((slug) => openJobs.find((j) => j.slug === slug) ?? []);
 
   return (
     <>
+      <AutoRefresh />
       <section className="container-site overflow-x-clip py-20">
         <div className="relative">
           <div
