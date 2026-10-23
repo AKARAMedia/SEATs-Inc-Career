@@ -1,6 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 import { TELEGRAM_RECRUIT } from "@/lib/links";
 import CtaApplyBand from "@/components/CtaApplyBand";
+
+const BUSINESSES = [
+  {
+    name: "LOKA Food&Beverage",
+    photo: "/media/2026/10/loka-interviews.jpg",
+    text: "Cambodia's top food & beverage wholesaler, importing fresh products from Japan and beyond for restaurants, hotels, and retailers nationwide.",
+    href: "https://lokajapanesefoodsbeverage.com/",
+  },
+  {
+    name: "S.E.A.T.S Farm",
+    photo: "/media/2022/11/seatsfarm-interviews.jpg",
+    text: "Growing high-quality branded vegetables and premium pepper on our own farm in Kampot, bringing safe, high-value produce from Cambodia to the world.",
+    href: "https://seatsfarm.com/",
+  },
+  {
+    name: "NOVA Marketing",
+    photo: "/media/2022/10/digital-interviews.jpg",
+    text: "Our digital marketing and e-commerce arm, helping brands grow online through content, advertising, and web development.",
+    href: "https://seats-inc.com/nova-marketing/",
+  },
+  {
+    name: "PISA Food Retail",
+    photo: "/media/2026/10/pisa-retail.jpg",
+    text: "Bringing Japanese food directly to customers through our retail store, SELECT STORE SORA — sake, groceries, and ready-to-eat meals.",
+    href: "https://seats-inc.com/pisa-food-retail/",
+  },
+];
 
 const INTERVIEWS = [
   {
@@ -46,62 +74,107 @@ const DOTS = "radial-gradient(currentColor 1.6px, transparent 1.6px)";
 export default function HomePage() {
   return (
     <>
-      <section className="relative flex h-[520px] items-center">
+      <section className="relative flex min-h-[560px] items-center">
         <Image src="/media/2026/10/team-photo-hero.jpg" alt="" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
         <div className="container-site relative text-white">
-          <h1 className="text-4xl text-white desktop:text-5xl">Careers - at S.E.A.T.S Inc.</h1>
-          <p className="mt-2 text-xl">Learn and earn, together</p>
-          <a href={TELEGRAM_RECRUIT} target="_blank" rel="noopener noreferrer" className="btn-outline mt-6 w-fit">
-            Join Talent Community
-          </a>
+          <h1 className="max-w-2xl text-4xl text-white desktop:text-6xl">
+            Grow Your Career with S.E.A.T.S Inc.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg text-white/90">
+            We&rsquo;re a Japanese trading company built in Cambodia — a big family of different departments,
+            businesses, and cultures learning and growing together. Come build your career with us.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link href="/jobs" className="btn-primary">
+              Explore Jobs <span aria-hidden>→</span>
+            </Link>
+            <a href={TELEGRAM_RECRUIT} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              Join Talent Community
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="container-site grid items-center gap-10 py-20 desktop:grid-cols-2">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+      <section className="container-site grid items-center gap-12 py-20 desktop:grid-cols-2">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
           <Image src="/media/2026/01/DSC03495-scaled.jpg" alt="" fill className="object-cover" />
         </div>
         <div>
           <h2 className="text-3xl text-primary">Company Goal</h2>
-          <div className="mt-4 space-y-4 text-text">
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-text">
             <p>
-              A decade ago, when I was cycling around Phnom Penh on a fresh Friday morning and I needed water, I
-              looked for the best quality drinking water that I could find. I picked a well-known imported product.
-              However, there was a constant disturbing thought coming to me, why can&rsquo;t Cambodia make an
-              internationally well recognized quality water for our people?
+              A decade ago, a simple question sparked everything: why can&rsquo;t Cambodia produce something the
+              world recognizes as top-quality?
             </p>
             <p>
-              Since then, the idea was conceptualized and a team was formed to take on the mission. Right from the
-              start, I was fortunate to have the support from a determined and highly qualified team who trusted me
-              and our vision.
+              That question became S.E.A.T.S Inc. With a small, determined team who believed in the vision, we&rsquo;ve
+              grown step by step ever since — and we&rsquo;re proud of what we&rsquo;ve built together.
             </p>
-            <p>We are proud of what we have accomplished. Vital has made its high standard recognized.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface py-20">
+        <div className="container-site">
+          <h2 className="text-3xl text-primary">Our Businesses</h2>
+          <p className="mt-2 max-w-2xl text-text">
+            S.E.A.T.S Inc. operates four growing brands across food, agriculture, and digital marketing — each with
+            its own team and its own career opportunities.
+          </p>
+          <div className="mt-10 grid gap-6 tablet:grid-cols-2 desktop:grid-cols-4">
+            {BUSINESSES.map((b) => (
+              <a
+                key={b.name}
+                href={b.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-border transition-shadow hover:shadow-md"
+              >
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={b.photo}
+                    alt={b.name}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-base font-bold text-primary">{b.name}</h3>
+                  <p className="mt-2 flex-1 text-sm text-text">{b.text}</p>
+                  <span className="mt-4 text-sm font-semibold text-primary">
+                    Learn more <span aria-hidden>→</span>
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-b from-white via-sky-100 to-sky-100 py-20">
-        <div className="container-site flex flex-col items-center gap-10 desktop:flex-row">
-          <div className="relative size-[220px] shrink-0 overflow-hidden rounded-full">
-            <Image src="/media/2023/03/ceo-1.jpeg" alt="Kosuke Mineshima" fill className="object-cover" />
-          </div>
-          <div>
-            <h2 className="text-3xl text-heading">Message From Managements</h2>
-            <p className="mt-4 text-4xl leading-none text-primary/40">&ldquo;</p>
-            <div className="-mt-6 space-y-4 text-text">
-              <p>Bringing wisdom and experiences acquired in Japan and surrounded nations to Cambodia.</p>
-              <p>&ldquo;Creating people, things, and ideas from Cambodia&rdquo;, this is S.E.A.T.S Inc.&rsquo;s imperative responsibility.</p>
-              <p>
-                Bringing wisdom and experiences acquired in Japan and surrounded nations to Cambodia. We make full use
-                of Cambodia&rsquo;s strength, maximize the on-site productivity, and produce &ldquo;power&rdquo; from
-                Cambodia that can compete in the world.
-              </p>
-              <p>
-                S.E.A.T.S Inc. believes that doing business on a real-site is everything. We continuously push forward
-                the grounded businesses, and by that, we aspire to meet imperative responsibilities.
-              </p>
-              <p className="pt-2 font-semibold text-heading">
+        <div className="container-site">
+          <h2 className="text-3xl text-heading">Message From Management</h2>
+          <div className="mt-8 flex flex-col items-center gap-10 rounded-2xl bg-white p-8 shadow-lg ring-1 ring-border desktop:flex-row desktop:items-start desktop:p-12">
+            <div className="relative size-[200px] shrink-0 overflow-hidden rounded-full shadow-md ring-4 ring-primary/10">
+              <Image src="/media/2023/03/ceo-1.jpeg" alt="Kosuke Mineshima" fill className="object-cover" />
+            </div>
+            <div className="relative">
+              <span aria-hidden className="absolute -left-1 -top-8 font-heading text-7xl leading-none text-primary/15">
+                &ldquo;
+              </span>
+              <div className="relative space-y-4 text-lg leading-relaxed text-text">
+                <p>&ldquo;Creating people, things, and ideas from Cambodia&rdquo; — this is S.E.A.T.S Inc.&rsquo;s imperative responsibility.</p>
+                <p>
+                  We bring wisdom and experience gained in Japan and neighboring nations to Cambodia, making full use
+                  of the country&rsquo;s strengths to produce &ldquo;power&rdquo; that can compete in the world.
+                </p>
+                <p>
+                  S.E.A.T.S Inc. believes that doing business on a real site is everything. We continuously push
+                  forward grounded businesses to meet that responsibility.
+                </p>
+              </div>
+              <p className="mt-6 border-t border-border pt-4 font-semibold text-heading">
                 Director &amp; CEO
                 <br />
                 Kosuke Mineshima
