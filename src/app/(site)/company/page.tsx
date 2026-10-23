@@ -30,12 +30,12 @@ const LIFE_CARDS = [
 ];
 
 const GALLERY = [
-  "/media/2024/04/photo-gallery-8.jpg",
-  "/media/2024/04/photo-gallery-10.jpg",
-  "/media/2024/04/photo-gallery-11.jpg",
-  "/media/2024/04/photo-gallery-12.jpg",
-  "/media/2024/04/photo-gallery-13.jpg",
-  "/media/2024/05/photo-gallery-14.jpg",
+  "/media/2026/10/gallery/cjcc-fair-mar-2026.webp",
+  "/media/2026/10/gallery/cjcc-job-fair-aug-2025.webp",
+  "/media/2026/10/gallery/training.webp",
+  "/media/2026/10/gallery/company-party-1.webp",
+  "/media/2026/10/gallery/company-party-2.webp",
+  "/media/2026/10/gallery/cjcc-job-fair-jan-2025.webp",
 ];
 
 const VIDEOS = [
