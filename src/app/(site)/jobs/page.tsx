@@ -129,7 +129,7 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
     <>
       <AutoRefresh />
       <section className="relative flex min-h-[420px] items-center justify-center text-center">
-        <Image src="/media/2026/01/DSC01606-scaled.jpg" alt="" fill priority className="object-cover" />
+        <Image src="/media/2026/10/team-photo-hero.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/35" />
         <div className="container-site relative text-white">
           <h1 className="text-4xl text-white desktop:text-5xl">Recruit</h1>

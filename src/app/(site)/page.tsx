@@ -47,7 +47,7 @@ export default function HomePage() {
   return (
     <>
       <section className="relative flex h-[520px] items-center">
-        <Image src="/media/2026/01/DSC01606-scaled.jpg" alt="" fill priority className="object-cover" />
+        <Image src="/media/2026/10/team-photo-hero.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/35" />
         <div className="container-site relative text-white">
           <h1 className="text-4xl text-white desktop:text-5xl">Careers - at S.E.A.T.S Inc.</h1>
