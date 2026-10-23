@@ -9,7 +9,7 @@ const TEAMS = [
   },
   {
     name: "LOKA Food&Beverage",
-    photo: "/media/2022/10/loka-interviews.jpg",
+    photo: "/media/2026/10/loka-interviews.jpg",
     text: "LOKA is the food import wholesale business brand of Japanese trading company S.E.A.T.S Inc. and one of Cambodia's top food wholesalers. And our partnerships with primary local food and beverage chains, supermarkets, global hotel brands.",
   },
   {
@@ -18,9 +18,9 @@ const TEAMS = [
     text: "Delivering high quality products from Cambodia within the country and to the world. S.E.A.T.S Farm is an agricultural production development project undertaken by S.E.A.T.S Inc., a Japanese trading company in Cambodia.",
   },
   {
-    name: "BOSBA Premium Foods",
+    name: "NOVA Marketing",
     photo: "/media/2022/10/digital-interviews.jpg",
-    text: "We served the online service with Frozen&Dried Item, Alcohol and Japanese Sake. “We will bring delicious foreign food at reasonable prices for you, housewives and professional chefs, enhance your work and taste your food with the ingredients of BOSBA Premium Foods.”",
+    text: "NOVA Marketing was launched in May 2022 as a new business initiative under S.E.A.T.S Inc., focusing on digital marketing. We operate e-commerce brands importing food, beverages, and baby products from Japan, alongside media production and marketing strategy support to help brands grow their online presence.",
   },
 ];
 
