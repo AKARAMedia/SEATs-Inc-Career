@@ -4,7 +4,7 @@ import CtaApplyBand from "@/components/CtaApplyBand";
 const TEAMS = [
   {
     name: "S.E.A.T.S Inc.",
-    photo: "/media/2024/02/bg-applynow1.jpg",
+    photo: "/media/2026/10/team-photo-hero.jpg",
     text: "S.E.A.T.S Inc. is a big family that consists of different departments, businesses, and cultures. Since we're a Japanese company based in Cambodia not only we shared our culture but to learn and thrived together as one to make an impact in Cambodia's society.",
   },
   {
