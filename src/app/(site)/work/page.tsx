@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import AutoRefresh from "@/components/AutoRefresh";
+import JobCard from "@/components/JobCard";
 import CtaApplyBand from "@/components/CtaApplyBand";
 import VideoPlaylist from "@/components/VideoPlaylist";
+import { loadOpenJobs } from "@/lib/jobs";
 
-const JOB_ANNOUNCEMENTS = [
-  { title: "Product Development (Agribusiness)", slug: "product-development-agribusiness" },
-  { title: "Representative of Sales", slug: "representative-of-sales-and-order-management" },
-  { title: "Supervisor of Operations", slug: "supervisor-of-operations" },
-  { title: "Copywriter", slug: "copywriter" },
-  { title: "Freelance Sales and Marketing Advisor", slug: "freelance-sales-and-marketing-advisor-2" },
+const JOB_ANNOUNCEMENT_SLUGS = [
+  "product-development-agribusiness",
+  "representative-of-sales-and-order-management",
+  "supervisor-of-operations",
+  "copywriter",
+  "freelance-sales-and-marketing-advisor-2",
 ];
 
 const VIDEOS = [
@@ -18,13 +21,23 @@ const VIDEOS = [
   { title: "4 One For All | Four Mindsets /S.E.A.T.S Inc.", youtubeId: "r77ewf-3Wu4", duration: "0:16", thumbnail: "/media/2022/11/4.jpg" },
 ];
 
-export default function WorkPage() {
+// The announced jobs come from the live jobs API (an uncached fetch), so render per request instead of at build time
+export const dynamic = "force-dynamic";
+
+export default async function WorkPage() {
+  const { jobs: openJobs } = await loadOpenJobs();
+  const announced = JOB_ANNOUNCEMENT_SLUGS.flatMap((slug) => openJobs.find((j) => j.slug === slug) ?? []);
+
   return (
     <>
-      <section className="container-site py-20">
+      <AutoRefresh />
+      <section className="container-site overflow-x-clip py-20">
         <div className="relative">
-          <div className="pointer-events-none absolute left-40 top-1/2 hidden w-[1000px] -translate-y-1/2 desktop:block" style={{ aspectRatio: "4536 / 877" }}>
-            <Image src="/media/2022/10/Our-Mission.png" alt="" fill className="object-contain object-left mix-blend-multiply" />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-40 top-1/2 hidden -translate-y-1/2 select-none whitespace-nowrap font-[Arial,Helvetica,sans-serif] text-[120px] font-extrabold leading-none text-[#e5f0f8] desktop:block"
+          >
+            Why Join Us?
           </div>
           <div className="relative">
             <h1 className="text-3xl text-primary">Mission</h1>
@@ -53,23 +66,18 @@ export default function WorkPage() {
         <div className="container-site text-center">
           <h2 className="text-3xl text-primary">Jobs Announcements</h2>
           <p className="mt-1 text-sm text-muted">ផ្នែកណាមួយដែរអ្នកចង់ ចូលរួមជាមួយយើង​ !</p>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-5 text-left desktop:grid-cols-2">
-            {JOB_ANNOUNCEMENTS.map((job) => (
-              <Link
-                key={job.slug}
-                href={`/jobs/${job.slug}`}
-                className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-border transition-shadow hover:shadow-md"
-              >
-                <p className="font-bold text-primary">{job.title}</p>
-                <p className="mt-2 text-sm text-text">If you&rsquo;re interested, please click for more information or apply now!</p>
-              </Link>
+          <ul className="mt-10 flex flex-wrap justify-center gap-4 text-left">
+            {announced.map((job, i) => (
+              <li key={job.slug} className="w-full tablet:w-[calc(50%-8px)]">
+                <JobCard job={job} index={i} />
+              </li>
             ))}
-          </div>
+          </ul>
           <Link
             href="/jobs"
             className="mt-10 inline-flex items-center justify-center rounded-full border border-primary px-6 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
           >
-            READ MORE <span aria-hidden className="ml-1.5">→</span>
+            SEE MORE <span aria-hidden className="ml-1.5">→</span>
           </Link>
         </div>
       </section>
