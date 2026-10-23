@@ -3,6 +3,7 @@ import { getOpenJob, listOpenJobs } from "@/lib/jobs";
 import { getHrContact } from "@/lib/settings";
 import { TELEGRAM_HR } from "@/lib/links";
 import HrContactCard from "@/components/HrContactCard";
+import ApplyForm from "@/components/ApplyForm";
 
 export async function generateStaticParams() {
   const openJobs = await listOpenJobs();
@@ -35,14 +36,19 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
           Posted: {new Date(job.postedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
         </p>
 
-        <a
-          href={TELEGRAM_HR}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary mt-6 w-fit"
-        >
-          Apply For This Job <span aria-hidden>→</span>
-        </a>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href={TELEGRAM_HR}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary w-fit"
+          >
+            Apply Via Telegram <span aria-hidden>→</span>
+          </a>
+          <a href="#apply-form" className="text-sm font-semibold text-primary hover:underline">
+            or apply directly below ↓
+          </a>
+        </div>
 
         <dl className="mt-8 grid gap-x-8 gap-y-3 border-t border-border pt-6 desktop:grid-cols-2">
           {INFO_ROWS(job).map((row) => (
@@ -57,6 +63,10 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
           className="prose prose-sm mt-8 max-w-none text-text [&_b]:text-heading [&_p]:mb-3 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6"
           dangerouslySetInnerHTML={{ __html: job.responsibilitiesHtml }}
         />
+
+        <div id="apply-form">
+          <ApplyForm slug={job.slug} jobTitle={job.title} />
+        </div>
       </article>
 
       <aside>
