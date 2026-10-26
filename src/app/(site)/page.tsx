@@ -92,11 +92,12 @@ export default function HomePage() {
           </h2>
           <p className="mt-1 text-sm text-muted">សម្ភាសន៍ សមាជិករបស់យើង !</p>
 
-          <div className="mt-10 grid gap-x-5 gap-y-10 tablet:grid-cols-2 desktop:grid-cols-3">
+          <div className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4">
+            {/* Card width leaves ~3.5 cards visible, so the partial next card hints there's more to scroll to. */}
             {INTERVIEWS.map((i, n) => {
               const bubble = BUBBLES[n % BUBBLES.length];
               return (
-                <figure key={i.name} className="flex flex-col">
+                <figure key={i.name} className="flex w-[calc((100%-3.125rem)/3.5)] shrink-0 snap-start flex-col">
                   <div className="relative aspect-square overflow-hidden shadow-lg">
                     <Image src={i.photo} alt={i.name} fill className="object-cover object-top" />
                   </div>
