@@ -5,13 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV_ITEMS, TELEGRAM_RECRUIT } from "@/lib/links";
+import { useActiveSection } from "@/hooks/useActiveSection";
+
+// Stable module-level reference, safe to pass straight into the hook's dependency array.
+const ANCHOR_IDS = NAV_ITEMS.filter((item) => item.href.startsWith("/#")).map((item) => item.href.slice(2));
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  // Only the merged homepage has these section ids — the hook is a safe no-op anywhere else.
+  const activeId = useActiveSection(ANCHOR_IDS);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/#")) return pathname === "/" && activeId === href.slice(2);
+    return pathname?.startsWith(href);
+  };
 
   return (
-    <header className="relative z-40 border-b border-border bg-white">
+    <header className="sticky top-0 z-40 border-b border-border bg-white">
       <div className="flex flex-wrap items-stretch">
         <Link href="/" className="flex shrink-0 items-center bg-primary px-4 py-2">
           <Image src="/media/2022/10/test.png" alt="S.E.A.T.S Inc." width={1701} height={298} priority className="h-[42px] w-auto" />
@@ -25,7 +36,7 @@ export default function Header() {
 
           <nav aria-label="Main navigation" className="ml-auto hidden items-center gap-6 desktop:flex">
             {NAV_ITEMS.map((item) => {
-              const active = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+              const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}

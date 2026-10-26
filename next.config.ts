@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
       { source: "/wp-login.php", destination: "/admin/login/", permanent: false },
       // Old hot-linked uploads keep working
       { source: "/wp-content/uploads/:path*", destination: "/media/:path*", permanent: true },
+      // Work/Company/Team merged into anchor sections on the one-page homepage
+      { source: "/work/", destination: "/#recruit", permanent: true },
+      { source: "/company/", destination: "/#company-intro", permanent: true },
+      { source: "/team/", destination: "/#company-intro", permanent: true },
     ];
   },
   turbopack: {
