@@ -3,32 +3,6 @@ import Link from "next/link";
 import { TELEGRAM_RECRUIT } from "@/lib/links";
 import CtaApplyBand from "@/components/CtaApplyBand";
 
-const BUSINESSES = [
-  {
-    name: "LOKA Japanese Food&Beverage",
-    photo: "/media/2026/10/loka-sake-products.jpg",
-    text: "LOKA imports and distributes Japanese and other food and beverage products to restaurants, hotels, supermarkets, and retail partners in Cambodia.",
-    href: "https://lokajapanesefoodsbeverage.com/",
-  },
-  {
-    name: "S.E.A.T.S Farm",
-    photo: "/media/2022/11/seatsfarm-interviews.jpg",
-    text: "Growing high-quality branded vegetables and premium pepper on our own farm in Kampot, bringing safe, high-value produce from Cambodia to the world.",
-    href: "https://seatsfarm.com/",
-  },
-  {
-    name: "NOVA Marketing",
-    photo: "/media/2022/10/digital-interviews.jpg",
-    text: "Our digital marketing and e-commerce arm, helping brands grow online through content, advertising, and web development.",
-    href: "https://seats-inc.com/nova-marketing/",
-  },
-  {
-    name: "PISA Food Retail",
-    photo: "/media/2026/10/pisa-retail.jpg",
-    text: "Bringing Japanese food directly to customers through our retail store, SELECT STORE SORA — sake, groceries, and ready-to-eat meals.",
-    href: "https://seats-inc.com/pisa-food-retail/",
-  },
-];
 
 const INTERVIEWS = [
   {
@@ -46,6 +20,13 @@ const INTERVIEWS = [
       "4.5 years and still going strong. Juggling orders, payments, deliveries and last-minute issues is messy but never boring; it keeps me thinking fast and organized. What keeps me here is the team energy: we support each other, communicate openly and solve problems together.",
   },
   {
+    name: "Poch Bunthy",
+    role: "GENERAL MANAGER, NOVA MARKETING",
+    photo: "/media/2026/10/interview-bunthy.jpg",
+    quote:
+      "Our visionary General Manager, shaping Nova Marketing's journey since day one. His dedication and leadership are at the heart of our success. Stay tuned for his story.",
+  },
+  {
     name: "Kazuhiro Okuda",
     role: "GENERAL MANAGER, AGRI-BUSINESS",
     photo: "/media/2026/10/interview-okuda.jpg",
@@ -53,11 +34,16 @@ const INTERVIEWS = [
       "Our dedicated General Manager in Agri-Business, and a key part of our growth since day one. Stay tuned for his inspiring journey.",
   },
   {
-    name: "Poch Bunthy",
-    role: "GENERAL MANAGER, NOVA MARKETING",
-    photo: "/media/2026/10/interview-bunthy.jpg",
-    quote:
-      "Our visionary General Manager, shaping Nova Marketing's journey since day one. His dedication and leadership are at the heart of our success. Stay tuned for his story.",
+    name: "Long Khema",
+    role: "OPERATION CONTROL",
+    photo: "/media/2026/10/interns/khema.jpg",
+    quote: "A senior Operation Control specialist at S.E.A.T.S Inc. Stay tuned for her story.",
+  },
+  {
+    name: "Raksa",
+    role: "SOCIAL MEDIA MANAGER",
+    photo: "/media/2026/10/interns/raksa.jpg",
+    quote: "Our Social Media Manager at S.E.A.T.S Inc., who has been with us for years. Stay tuned for her story.",
   },
 ];
 
@@ -70,6 +56,14 @@ const BUBBLES = [
 ];
 
 const DOTS = "radial-gradient(currentColor 1.6px, transparent 1.6px)";
+
+const JAPANESE_INTERNS = [
+  { name: "Chinastu Noma", role: "Representative of Sales & Marketing", photo: "/media/2026/10/interns/chitnasu.jpg" },
+  { name: "Kirara Ido", role: "Japanese Internship", photo: "/media/2026/10/interns/kirara.jpg" },
+  { name: "Saiga Matsumoto", role: "Assistant of Sales & Development", photo: "/media/2026/10/interns/saiga.jpg" },
+  { name: "Yusuke Ogushi", role: "Assistant of Sales & Promotion", photo: "/media/2026/10/interns/yusuke.jpg" },
+  { name: "Shoko Kawabata", role: "Japanese Internship", photo: "/media/2026/10/interns/shoko.jpg" },
+];
 
 export default function HomePage() {
   return (
@@ -111,43 +105,6 @@ export default function HomePage() {
               That question became S.E.A.T.S Inc. With a small, determined team who believed in the vision, we&rsquo;ve
               grown step by step ever since — and we&rsquo;re proud of what we&rsquo;ve built together.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-surface py-20">
-        <div className="container-site">
-          <h2 className="text-3xl text-primary">Our Businesses</h2>
-          <p className="mt-2 max-w-2xl text-text">
-            S.E.A.T.S Inc. operates four growing brands across food, agriculture, and digital marketing — each with
-            its own team and its own career opportunities.
-          </p>
-          <div className="mt-10 grid gap-6 tablet:grid-cols-2 desktop:grid-cols-4">
-            {BUSINESSES.map((b) => (
-              <a
-                key={b.name}
-                href={b.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-border transition-shadow hover:shadow-md"
-              >
-                <div className="relative h-40 w-full overflow-hidden">
-                  <Image
-                    src={b.photo}
-                    alt={b.name}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-bold text-primary">{b.name}</h3>
-                  <p className="mt-2 flex-1 text-sm text-text">{b.text}</p>
-                  <span className="mt-4 text-sm font-semibold text-primary">
-                    Learn more <span aria-hidden>→</span>
-                  </span>
-                </div>
-              </a>
-            ))}
           </div>
         </div>
       </section>
@@ -223,7 +180,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-1 text-sm text-muted">សម្ភាសន៍ សមាជិករបស់យើង !</p>
 
-          <div className="mt-10 grid gap-x-5 gap-y-10 tablet:grid-cols-2 desktop:grid-cols-4">
+          <div className="mt-10 grid gap-x-5 gap-y-10 tablet:grid-cols-2 desktop:grid-cols-3">
             {INTERVIEWS.map((i, n) => {
               const bubble = BUBBLES[n % BUBBLES.length];
               return (
@@ -256,6 +213,29 @@ export default function HomePage() {
                     </div>
                   </div>
                 </figure>
+              );
+            })}
+          </div>
+
+          <h3 className="mt-16 text-2xl text-primary">Our Japanese Interns</h3>
+          <p className="mt-2 max-w-2xl text-text">
+            Meet the Japanese interns spending time with us, learning, contributing, and sharing their culture with
+            the S.E.A.T.S Inc. team.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-6 tablet:grid-cols-3 desktop:grid-cols-6">
+            {JAPANESE_INTERNS.map((intern, i) => {
+              const bubble = BUBBLES[i % BUBBLES.length];
+              return (
+                <div key={intern.name} className="flex flex-col items-center text-center">
+                  <div
+                    className="relative size-24 overflow-hidden rounded-full shadow-sm ring-4 desktop:size-28"
+                    style={{ "--tw-ring-color": bubble.color } as React.CSSProperties}
+                  >
+                    <Image src={intern.photo} alt={intern.name} fill className="object-cover object-top" />
+                  </div>
+                  <span className="mt-3 text-sm font-bold text-heading">{intern.name}</span>
+                  <span className="text-xs text-muted">{intern.role}</span>
+                </div>
               );
             })}
           </div>
