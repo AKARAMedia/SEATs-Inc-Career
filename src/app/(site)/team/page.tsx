@@ -4,11 +4,11 @@ import { TELEGRAM_RECRUIT } from "@/lib/links";
 
 const BUSINESSES = [
   {
-    name: "S.E.A.T.S Inc.",
-    logo: "/media/2022/10/full-logo.jpg",
-    photo: "/media/2022/10/digital-interviews.jpg",
-    text: "A Japanese company in Cambodia with diverse departments, businesses, and cultures. We work together to create a positive impact on Cambodian society.",
-    href: "/company",
+    name: "NOVA Marketing",
+    logo: "/media/2026/10/logo-nova.webp",
+    photo: "/media/2026/10/nova-team.png",
+    text: "Our digital marketing and e-commerce arm, helping brands grow online through content, advertising, and web development.",
+    href: "https://seats-inc.com/nova-marketing/",
   },
   {
     name: "LOKA Japanese Food & Beverage",
