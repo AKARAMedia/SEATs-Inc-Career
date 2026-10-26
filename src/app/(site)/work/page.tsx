@@ -4,7 +4,41 @@ import AutoRefresh from "@/components/AutoRefresh";
 import JobCard from "@/components/JobCard";
 import CtaApplyBand from "@/components/CtaApplyBand";
 import VideoPlaylist from "@/components/VideoPlaylist";
+import SocialFeed, { type SocialPost } from "@/components/SocialFeed";
 import { loadOpenJobs } from "@/lib/jobs";
+
+// Real recent posts from the SEATS Inc Facebook page — reusing the same photos/captions
+// sourced for the homepage's "Meet Our Members"/interns sections.
+const SOCIAL_POSTS: SocialPost[] = [
+  {
+    name: "Chinastu Noma",
+    headline: "Meet our Japanese intern",
+    caption: "Meet Chinastu Noma from Japan, who works as a Representative of Sales & Marketing in the LOKA-MD department.",
+    photo: "/media/2026/10/interns/chitnasu.jpg",
+    href: "https://www.facebook.com/share/p/1S1mMwFnzb/?mibextid=wwXIfr",
+  },
+  {
+    name: "Kirara Ido",
+    headline: "Meet our Japanese intern",
+    caption: "Meet Kirara from Japan, currently a 4th-year university student interning with S.E.A.T.S Inc.",
+    photo: "/media/2026/10/interns/kirara.jpg",
+    href: "https://www.facebook.com/share/p/1KhHoR4A5b/?mibextid=",
+  },
+  {
+    name: "Saiga Matsumoto",
+    headline: "Meet our Japanese intern",
+    caption: "Meet Saiga Matsumoto from Japan, an inspiring intern at S.E.A.T.S Inc.",
+    photo: "/media/2026/10/interns/saiga.jpg",
+    href: "https://www.facebook.com/share/p/19sM8hDjjs/?mibextid=wwXIfr",
+  },
+  {
+    name: "Raksa",
+    headline: "Meet our Social Media Manager",
+    caption: "Meet Raksa, our Social Media Manager at S.E.A.T.S Inc., who has been with us for years.",
+    photo: "/media/2026/10/interns/raksa.jpg",
+    href: "https://www.facebook.com/photo.php?fbid=1357460016345009&set=pb.100062430709439.-2207520000&type=3",
+  },
+];
 
 const JOB_ANNOUNCEMENT_SLUGS = [
   "product-development-agribusiness",
@@ -100,36 +134,7 @@ export default async function WorkPage() {
         </div>
       </section>
 
-      <section className="container-site overflow-x-clip py-20">
-        <div className="relative">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-40 top-1/2 hidden -translate-y-1/2 select-none whitespace-nowrap font-[Arial,Helvetica,sans-serif] text-[120px] font-extrabold leading-none text-[#e5f0f8] desktop:block"
-          >
-            Why Join Us?
-          </div>
-          <div className="relative">
-            <h2 className="text-3xl text-primary">Mission</h2>
-            <p className="mt-1 text-sm text-muted">បេសកកម្ម របស់យើង !</p>
-          </div>
-        </div>
-        <div className="mt-10 grid items-center gap-10 desktop:grid-cols-2">
-          <div className="space-y-4 text-text">
-            <p>For Growth, Changes, Challenges, &amp; For US With S.E.A.T.S Inc.</p>
-            <p>
-              We provide an environment and an opportunity to those that seek challenges to further improvement of
-              their better selves.
-            </p>
-            <p>
-              Our mission is to raise potential members which we believed that everyone got the potential and what
-              they needed are the key to unlock those.
-            </p>
-          </div>
-          <div className="relative hidden aspect-[608/255] w-full desktop:block">
-            <Image src="/media/2022/10/d.png" alt="" fill className="object-contain" />
-          </div>
-        </div>
-      </section>
+      <SocialFeed posts={SOCIAL_POSTS} />
 
       <section className="py-20">
         <div className="container-site text-center">

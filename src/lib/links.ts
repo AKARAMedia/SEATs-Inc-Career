@@ -3,6 +3,7 @@
 export const TELEGRAM_RECRUIT = "https://t.me/seatsincrecruit";
 export const TELEGRAM_HR = "https://t.me/seatsinchr";
 export const MESSENGER = "http://m.me/seatsinccambodia";
+export const FACEBOOK_PAGE = "https://www.facebook.com/seatsinccambodia";
 export const LINKEDIN = "https://www.linkedin.com/company/81613382/admin/";
 export const HR_PHONE = "089 777 231";
 
