@@ -108,7 +108,6 @@ export type GalleryPhoto = { src: string; caption: string };
 export const GALLERY: GalleryPhoto[] = [
   { src: "/media/2026/01/DSC03495-scaled.jpg", caption: "Team Collaboration" },
   { src: "/media/2026/10/gallery/cjcc-fair-mar-2026.webp", caption: "CJCC Career Fair 2026" },
-  { src: "/media/2026/10/gallery/cjcc-job-fair-aug-2025.webp", caption: "CJCC Job Fair — Aug 2025" },
   { src: "/media/2026/10/gallery/training.webp", caption: "Team Training Session" },
   { src: "/media/2026/10/gallery/company-party-1.webp", caption: "Company Party" },
   { src: "/media/2026/10/gallery/company-party-2.webp", caption: "Company Party" },
