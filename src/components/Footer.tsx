@@ -4,12 +4,12 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white">
       <div className="grid desktop:grid-cols-2">
-        <Link href="/company" className="flex flex-col items-center gap-2 border-b border-white/15 py-10 text-center text-white transition-colors hover:text-[var(--color-logo-green)] desktop:border-b-0 desktop:border-r">
+        <a href="https://seats-inc.com" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 border-b border-white/15 py-10 text-center text-white transition-colors hover:text-[var(--color-logo-green)] desktop:border-b-0 desktop:border-r">
           <BuildingIcon />
           <span className="text-lg font-bold tracking-wide">COMPANY</span>
           <span className="text-xs">អំពីក្រុមហ៊ុន</span>
-        </Link>
-        <Link href="/work" className="flex flex-col items-center gap-2 py-10 text-center text-white transition-colors hover:text-[var(--color-logo-green)]">
+        </a>
+        <Link href="/jobs" className="flex flex-col items-center gap-2 py-10 text-center text-white transition-colors hover:text-[var(--color-logo-green)]">
           <WorkIcon />
           <span className="text-lg font-bold tracking-wide">WORK</span>
           <span className="text-xs">អំពីការងារ</span>

@@ -130,10 +130,10 @@ export default function HomePage() {
             })}
           </div>
 
-          <h3 className="mt-16 text-2xl text-primary">Our Japanese Interns</h3>
+          <h3 className="mt-16 text-2xl text-primary">Our Japanese and Internship Member</h3>
           <p className="mt-2 max-w-2xl text-text">
-            Meet the Japanese interns spending time with us, learning, contributing, and sharing their culture with
-            the S.E.A.T.S Inc. team.
+            Meet our Japanese team members and interns spending time with us, learning, contributing, and sharing
+            their culture with the S.E.A.T.S Inc. team.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-6 tablet:grid-cols-3 desktop:grid-cols-6">
             {JAPANESE_INTERNS.map((intern, i) => {
