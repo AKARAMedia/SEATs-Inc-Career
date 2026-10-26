@@ -5,9 +5,9 @@ import CtaApplyBand from "@/components/CtaApplyBand";
 
 const BUSINESSES = [
   {
-    name: "LOKA Food&Beverage",
-    photo: "/media/2026/10/loka-interviews.jpg",
-    text: "Cambodia's top food & beverage wholesaler, importing fresh products from Japan and beyond for restaurants, hotels, and retailers nationwide.",
+    name: "LOKA Japanese Food&Beverage",
+    photo: "/media/2026/10/loka-sake-products.jpg",
+    text: "LOKA imports and distributes Japanese and other food and beverage products to restaurants, hotels, supermarkets, and retail partners in Cambodia.",
     href: "https://lokajapanesefoodsbeverage.com/",
   },
   {

@@ -11,10 +11,10 @@ const BUSINESSES = [
     href: "/company",
   },
   {
-    name: "LOKA Food & Beverage",
+    name: "LOKA Japanese Food & Beverage",
     logo: "/media/2026/10/logo-loka.webp",
-    photo: "/media/2026/10/loka-interviews.jpg",
-    text: "Food import and wholesale business. We supply quality food and beverage products to local chains, supermarkets, hotels, and more.",
+    photo: "/media/2026/10/loka-sake-products.jpg",
+    text: "LOKA imports and distributes Japanese and other food and beverage products to restaurants, hotels, supermarkets, and retail partners in Cambodia.",
     href: "https://lokajapanesefoodsbeverage.com/",
   },
   {
