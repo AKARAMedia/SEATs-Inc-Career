@@ -165,6 +165,7 @@ export const BUSINESSES = [
   {
     name: "NOVA Marketing",
     logo: "/media/2026/10/logo-nova.webp",
+    color: "#1a8fc0", // main color of the logo, used for the card title
     photo: "/media/2026/10/nova-team.png",
     text: "Our digital marketing and e-commerce arm, helping brands grow online through content, advertising, and web development.",
     href: "https://seats-inc.com/nova-marketing/",
@@ -172,6 +173,7 @@ export const BUSINESSES = [
   {
     name: "LOKA Japanese Food & Beverage",
     logo: "/media/2026/10/logo-loka.webp",
+    color: "#181878", // main color of the logo, used for the card title
     photo: "/media/2026/10/loka-sake-products.jpg",
     text: "LOKA imports and distributes Japanese and other food and beverage products to restaurants, hotels, supermarkets, and retail partners in Cambodia.",
     href: "https://lokajapanesefoodsbeverage.com/",
@@ -179,6 +181,7 @@ export const BUSINESSES = [
   {
     name: "S.E.A.T.S Farm",
     logo: "/media/2026/10/logo-seats-farm.webp",
+    color: "#6bb12a", // main color of the logo, used for the card title
     photo: "/media/2022/11/seatsfarm-interviews.jpg",
     text: "Agricultural production and development. We grow high-quality produce from Cambodia for local and global markets.",
     href: "https://seatsfarm.com/",
@@ -186,6 +189,7 @@ export const BUSINESSES = [
   {
     name: "PISA Food Retail",
     logo: "/media/2026/10/logo-pisa.webp",
+    color: "#d84818", // main color of the logo, used for the card title
     photo: "/media/2026/10/pisa-retail.jpg",
     text: "Retail business of food and daily products. We bring quality products to more customers through our retail stores.",
     href: "https://seats-inc.com/pisa-food-retail/",

@@ -205,7 +205,9 @@ export default function HomePage() {
                     <div className="relative -mt-9 mb-2 flex size-11 items-center justify-center overflow-hidden rounded-full bg-white p-1.5 shadow ring-1 ring-border">
                       <Image src={b.logo} alt="" fill className="object-contain" />
                     </div>
-                    <h3 className="text-base font-bold text-primary">{b.name}</h3>
+                    <h3 className="text-base font-bold" style={{ color: b.color }}>
+                      {b.name}
+                    </h3>
                     <p className="mt-2 flex-1 text-sm text-text">{b.text}</p>
                     <span className="mt-4 text-sm font-semibold text-primary">
                       Learn More <span aria-hidden>→</span>
