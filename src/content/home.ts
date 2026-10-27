@@ -14,8 +14,10 @@ export const CEO_MESSAGE = {
   eyebrowKhmer: "សារពីផ្នែក ធនធានមនុស្ស​!",
   heading: "From Cambodia to the World",
   paragraphs: [
-    "Everyone is the same, but those who seek challenges and improvement will always be a step further ahead.",
-    "S.E.A.T.S Inc. welcomes anyone ready for a challenge and willing to change for the better. We provide the opportunity to make changes and create something new — it's up to you to decide what you want to hold in the future.",
+    "នៅ S.E.A.T.S Inc. យើងជឿជាក់ថា មនុស្សគ្រប់រូបមានសក្តានុពលក្នុងការរៀនសូត្រ អភិវឌ្ឍខ្លួន និងបង្កើតឥទ្ធិពលវិជ្ជមាន។ យើងលើកទឹកចិត្តសមាជិកក្រុមរបស់យើងឱ្យហ៊ានទទួលយកបញ្ហាប្រឈមថ្មីៗ បន្តអភិវឌ្ឍជំនាញរបស់ខ្លួន និងជួយគាំទ្រគ្នាទៅវិញទៅមក ដើម្បីសម្រេចគោលដៅរួម។",
+    "យើងប្តេជ្ញាចូលរួមចំណែកក្នុងការអភិវឌ្ឍប្រទេសកម្ពុជា តាមរយៈការរួមបញ្ចូលជំនាញ និងបទពិសោធន៍របស់ជប៉ុន ជាមួយនឹងទេពកោសល្យ និងសក្តានុពលរបស់កម្ពុជា។ តាមរយៈវិធីសាស្ត្រនេះ យើងខិតខំបង្កើតផលិតផល សេវាកម្ម និងតម្លៃថ្មីៗ ដែលអាចទទួលបានការទទួលស្គាល់ និងការកោតសរសើរទាំងក្នុងប្រទេសកម្ពុជា និងលើឆាកអន្តរជាតិ។",
+    "យើងជឿជាក់ថា ភាពជោគជ័យរបស់ក្រុមហ៊ុនកើតចេញពីការរីកចម្រើនរបស់មនុស្សនៅក្នុងក្រុមហ៊ុន។ ដូច្នេះ យើងឱ្យតម្លៃចំពោះបុគ្គលដែលមានឆន្ទៈហ៊ានប្រឈមនឹងបញ្ហាប្រឈមថ្មីៗ បន្តរៀនសូត្រ និងរីកចម្រើនជាមួយគ្នាក្នុងនាមជាក្រុមតែមួយ។",
+    "ខ្ញុំទន្ទឹងរង់ចាំជួបមនុស្សដែលមានតម្លៃ និងចក្ខុវិស័យស្របគ្នានឹងយើង ព្រមទាំងមានឆន្ទៈក្នុងការហ៊ានប្រឈមនឹងបញ្ហាប្រឈមថ្មីៗ បំផុសគំនិត និងរៀនសូត្រពីគ្នាទៅវិញទៅមក ខណៈពេលដែលយើងបន្តរីកចម្រើន និងកសាងអនាគតដ៏ល្អប្រសើរជាមួយគ្នា។",
   ],
   pullQuote: "We will keep generating something new for the happiness of all stakeholders.",
 };
@@ -85,20 +87,20 @@ export const JAPANESE_INTERNS = [
 
 export const BENEFITS: { title: string; text: string }[] = [
   {
-    title: "Learning & Growth",
-    text: "Clear paths to learn new skills and grow your career — we always look first to promote from within.",
+    title: "Learn & Grow",
+    text: "Build skills through practical experience and new challenges.",
   },
   {
-    title: "Time Off",
-    text: "Paid time off to recharge, spend time with family, and pursue your personal goals.",
+    title: "Work Together",
+    text: "Collaborate with colleagues from different backgrounds.",
   },
   {
-    title: "Giving Back",
-    text: "We care about our community and support initiatives that give back to Cambodia.",
+    title: "Make an Impact",
+    text: "Contribute ideas and create value through our businesses.",
   },
   {
-    title: "Rewards",
-    text: "Recognition and rewards for the people who help S.E.A.T.S Inc. grow.",
+    title: "Grow Together",
+    text: "Learn from others and contribute to shared goals.",
   },
 ];
 

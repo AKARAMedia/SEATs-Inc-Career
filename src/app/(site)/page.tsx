@@ -153,8 +153,8 @@ export default function HomePage() {
             })}
           </div>
 
-          <h3 className="mt-16 text-2xl text-primary">Why Join Us?</h3>
-          <p className="mt-1 text-sm text-muted">អត្ថប្រយោជន៍សម្រាប់បុគ្គលិក</p>
+          <h3 className="mt-16 text-2xl text-primary">Why Build Your Career with S.E.A.T.S Inc.?</h3>
+          <p className="mt-1 text-sm text-muted">Discover opportunities to learn, contribute, and grow with our team.</p>
           <BenefitsGrid items={BENEFITS} />
         </div>
       </section>

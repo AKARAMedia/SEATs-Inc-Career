@@ -2,8 +2,8 @@
 
 /* Design tokens ported from the live Astra + Elementor kit settings (seatsinc-career.com) */
 @theme {
-  --font-sans: var(--font-open-sans), Arial, Helvetica, sans-serif;
-  --font-heading: var(--font-montserrat), "Helvetica Neue", sans-serif;
+  --font-sans: var(--font-open-sans), var(--font-khmer), Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-khmer), "Helvetica Neue", sans-serif;
 
   --color-primary: #0170b9; /* Astra global color 0 / header + links */
   --color-accent: #3bb3f8; /* lighter blue accent used in Elementor sections */
