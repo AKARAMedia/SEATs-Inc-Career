@@ -92,12 +92,15 @@ export default function HomePage() {
           </h2>
           <p className="mt-1 text-sm text-muted">សម្ភាសន៍ សមាជិករបស់យើង !</p>
 
-          <div className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4">
-            {/* Card width leaves ~3.5 cards visible, so the partial next card hints there's more to scroll to. */}
+          <div className="-mx-[15px] mt-10 flex snap-x snap-mandatory scroll-px-[15px] gap-5 overflow-x-auto px-[15px] pb-4 tablet:mx-0 tablet:scroll-px-0 tablet:px-0">
+            {/* Card width leaves a partial next card visible (~1.25 on mobile, 2.5 on tablet, 3.5 on desktop) to hint there's more to scroll to. */}
             {INTERVIEWS.map((i, n) => {
               const bubble = BUBBLES[n % BUBBLES.length];
               return (
-                <figure key={i.name} className="flex w-[calc((100%-3.125rem)/3.5)] shrink-0 snap-start flex-col">
+                <figure
+                  key={i.name}
+                  className="flex w-[78%] shrink-0 snap-start flex-col tablet:w-[calc((100%-3.125rem)/2.5)] desktop:w-[calc((100%-3.125rem)/3.5)]"
+                >
                   <div className="relative aspect-square overflow-hidden shadow-lg">
                     <Image src={i.photo} alt={i.name} fill className="object-cover object-top" />
                   </div>
@@ -118,7 +121,7 @@ export default function HomePage() {
                       <span aria-hidden className="font-heading text-4xl leading-none text-white/90">
                         &ldquo;
                       </span>
-                      <blockquote className="-mt-1 text-[13px] leading-relaxed">{i.quote}</blockquote>
+                      <blockquote className="-mt-1 text-sm leading-relaxed desktop:text-[13px]">{i.quote}</blockquote>
                       <figcaption className="mt-4 border-t border-white/30 pt-3">
                         <span className="block font-semibold">{i.name}</span>
                         <span className="block text-[11px] font-bold uppercase tracking-wide text-white/80">{i.role}</span>
@@ -135,11 +138,14 @@ export default function HomePage() {
             Meet our Japanese team members and interns spending time with us, learning, contributing, and sharing
             their culture with the S.E.A.T.S Inc. team.
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-6 tablet:grid-cols-3 desktop:grid-cols-6">
+          <div className="-mx-3 mt-10 flex flex-wrap justify-center">
             {JAPANESE_INTERNS.map((intern, i) => {
               const bubble = BUBBLES[i % BUBBLES.length];
               return (
-                <div key={intern.name} className="flex flex-col items-center text-center">
+                <div
+                  key={intern.name}
+                  className="flex w-1/2 flex-col items-center px-3 pb-6 text-center tablet:w-1/3 desktop:w-1/6"
+                >
                   <div
                     className="relative size-24 overflow-hidden rounded-full shadow-sm ring-4 desktop:size-28"
                     style={{ "--tw-ring-color": bubble.color } as React.CSSProperties}
