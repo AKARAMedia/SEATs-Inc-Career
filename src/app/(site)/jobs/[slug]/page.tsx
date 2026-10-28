@@ -56,7 +56,7 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
   } catch (err) {
     if (!(err instanceof JobsUnavailableError)) throw err;
     return (
-      <div className="container-site py-10 tablet:py-12">
+      <div className="container-site pb-10 pt-28 tablet:pb-12">
         <AutoRefresh />
         <div className="mb-5">
           <BackToJobs />
@@ -79,7 +79,7 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
   });
 
   return (
-    <div className="container-site py-10 tablet:py-12">
+    <div className="container-site pb-10 pt-28 tablet:pb-12">
       <AutoRefresh />
       <div className="mb-5">
         <BackToJobs />

@@ -31,9 +31,9 @@ export default function BenefitsGrid({ items }: { items: { title: string; text: 
       {items.map((b, i) => (
         <div
           key={b.title}
-          className="flex flex-col items-center rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-border"
+          className="card card-hover reveal flex flex-col items-center p-8 text-center"
         >
-          <span className="flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <span className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-md">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="size-7">
               {ICONS[i % ICONS.length]}
             </svg>
