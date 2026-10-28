@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV_ITEMS, TELEGRAM_RECRUIT } from "@/lib/links";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 
 // Stable module-level reference, safe to pass straight into the hook's dependency array.
 const ANCHOR_IDS = NAV_ITEMS.filter((item) => item.href.startsWith("/#")).map((item) => item.href.slice(2));
@@ -15,6 +16,9 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   // Only the merged homepage has these section ids — the hook is a safe no-op anywhere else.
   const activeId = useActiveSection(ANCHOR_IDS);
+  // Slide away while scrolling down, come back on scroll up; stay put while the mobile menu is open.
+  const scrolledDown = useHideOnScroll();
+  const hidden = scrolledDown && !open;
 
   const isActive = (href: string) => {
     if (href.startsWith("/#")) return pathname === "/" && activeId === href.slice(2);
@@ -22,16 +26,22 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white">
-      <div className="flex flex-wrap items-stretch">
-        <Link href="/" className="flex shrink-0 items-center bg-primary px-4 py-2">
-          <Image src="/media/2022/10/test.png" alt="S.E.A.T.S Inc." width={1701} height={298} priority className="h-[42px] w-auto" />
+    <header className="sticky top-0 z-40 h-0">
+      {/* Zero-height header so the pill floats over the hero image instead of pushing it down. */}
+      <div
+        className={`px-3 pt-3 transition-transform duration-300 ease-out has-[:focus-visible]:translate-y-0 tablet:px-6 tablet:pt-4 ${
+          hidden ? "-translate-y-[150%]" : ""
+        }`}
+      >
+      <div className="flex items-stretch gap-2 rounded-full bg-white p-2 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+        <Link href="/" className="flex shrink-0 items-center rounded-full bg-primary px-5 py-1.5">
+          <Image src="/media/2022/10/test.png" alt="S.E.A.T.S Inc." width={1701} height={298} priority className="h-[36px] w-auto" />
         </Link>
 
-        <div className="flex flex-1 items-center gap-4 px-4 py-2">
+        <div className="flex flex-1 items-center gap-4 pl-2 pr-2">
           <div className="hidden flex-col leading-tight desktop:flex">
             <span className="text-[11px] text-muted">គេហទំព័រជ្រើសរើសបុគ្គលិកថ្មីៗ</span>
-            <Image src="/media/2022/10/Header-e1666593258561.png" alt="RECRUIT SITE" width={489} height={90} className="h-[34px] w-auto" />
+            <Image src="/media/2022/10/Header-e1666593258561.png" alt="RECRUIT SITE" width={489} height={90} className="h-[30px] w-auto" />
           </div>
 
           <nav aria-label="Main navigation" className="ml-auto hidden items-center gap-6 desktop:flex">
@@ -77,7 +87,10 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav aria-label="Mobile navigation" className="flex flex-col border-t border-border desktop:hidden">
+        <nav
+          aria-label="Mobile navigation"
+          className="mt-2 flex flex-col overflow-hidden rounded-3xl bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] desktop:hidden"
+        >
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -98,6 +111,7 @@ export default function Header() {
           </a>
         </nav>
       )}
+      </div>
     </header>
   );
 }
