@@ -27,7 +27,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section id="top" className="relative flex min-h-[620px] items-center overflow-hidden rounded-b-[2rem] pt-24 desktop:min-h-[700px] desktop:rounded-b-[3rem]">
+      <section id="top" className="relative flex min-h-screen items-center overflow-hidden pb-28 pt-24 tablet:pb-0">
         <Image src={HERO.photo} alt="" fill priority className="hero-kenburns object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/45 to-navy/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
@@ -47,18 +47,51 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+
+        <a
+          href="#ceo-message"
+          aria-label="Scroll down"
+          style={{ "--hero-delay": "1.2s" } as React.CSSProperties}
+          className="hero-in group absolute inset-x-0 bottom-8 mx-auto flex w-fit flex-col items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white"
+        >
+          <span
+            aria-hidden
+            className="relative block h-12 w-[30px] rounded-full border-2 border-white/60 bg-white/5 shadow-[0_0_0_6px_rgb(255_255_255/0.06)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 group-hover:border-white group-hover:shadow-[0_0_0_10px_rgb(255_255_255/0.1)]"
+          >
+            <span className="scroll-wheel absolute left-1/2 top-2.5 h-2.5 w-1 -translate-x-1/2 rounded-full bg-logo-green" />
+          </span>
+          {/* Label hidden on phones, where it would collide with the floating Apply Now button. */}
+          <span className="hidden tablet:block">Scroll down</span>
+        </a>
       </section>
 
       {/* CEO Message */}
       <section id="ceo-message" className="container-site scroll-mt-20 py-24">
         <div className="reveal grid gap-12 desktop:grid-cols-[360px_1fr] desktop:items-center">
-          <div className="relative pb-6">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-lift">
-              <Image src={CEO_MESSAGE.photo} alt={CEO_MESSAGE.name} fill className="object-cover" />
-            </div>
-            <div className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-white/95 px-5 py-4 shadow-soft ring-1 ring-border backdrop-blur">
-              <p className="font-semibold text-heading">{CEO_MESSAGE.name}</p>
-              <p className="text-sm text-muted">{CEO_MESSAGE.title}</p>
+          <div className="mx-auto w-full max-w-[360px]">
+            {/* Polaroid-style photo: white print frame with the name on the bottom strip, pinned on. */}
+            <div className="group relative px-4 py-8">
+              <figure className="relative -rotate-2 rounded-sm bg-white p-3 pb-4 shadow-[0_24px_50px_-12px_rgb(14_24_43/0.45)] transition-transform duration-500 group-hover:rotate-0">
+                {/* Push pin: glossy head with a highlight, a soft cast shadow on the print, and the needle going in. */}
+                <span aria-hidden className="absolute -top-3 left-1/2 z-10 block size-7 -translate-x-1/2">
+                  <span className="absolute left-[42%] top-[58%] h-2.5 w-4 rotate-[-18deg] rounded-full bg-black/30 blur-[3px]" />
+                  <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 rounded-full bg-slate-400" />
+                  <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_32%_28%,#ff9aa0_0%,#e5484d_38%,#a31d24_100%)] shadow-[0_3px_6px_rgb(0_0_0/0.35),inset_0_-2px_3px_rgb(0_0_0/0.25)]" />
+                  <span className="absolute left-[24%] top-[20%] h-2 w-2.5 -rotate-[30deg] rounded-full bg-white/70 blur-[1px]" />
+                </span>
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface ring-1 ring-black/5">
+                  <Image src={CEO_MESSAGE.photo} alt={CEO_MESSAGE.name} fill sizes="(min-width: 1025px) 340px, 90vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                </div>
+                <figcaption className="relative mt-4 px-1 pr-14">
+                  <p className="font-heading text-lg font-bold leading-tight text-navy">{CEO_MESSAGE.name}</p>
+                  <p className="mt-0.5 text-sm font-medium text-primary">{CEO_MESSAGE.title}</p>
+                  <span aria-hidden className="mt-3 block h-1 w-12 rounded-full bg-gradient-to-r from-primary to-logo-green" />
+                  <span aria-hidden className="absolute bottom-0 right-1 grid size-10 place-items-center rounded-full bg-primary font-heading text-2xl leading-none text-white shadow-md">
+                    &ldquo;
+                  </span>
+                </figcaption>
+              </figure>
             </div>
           </div>
           <div>
@@ -70,11 +103,15 @@ export default function HomePage() {
                 <p key={p}>{p}</p>
               ))}
             </div>
-            <div className="mt-6 flex gap-3 rounded-2xl border-l-4 border-primary bg-gradient-to-r from-primary/5 to-logo-green/10 p-5">
-              <span aria-hidden className="font-heading text-4xl leading-none text-primary/30">
-                &ldquo;
+            {/* Board below the message with the CEO's line written on it, tab label on top like a name plate. */}
+            <div className="relative mt-7 rounded-xl bg-gradient-to-br from-primary to-[#0a5a94] px-4 pb-4 pt-6 text-white shadow-lift ring-1 ring-white/10">
+              <span className="absolute -top-3 left-4 rounded-md bg-navy px-3 py-0.5 font-heading text-xs font-bold tracking-wide text-white shadow-md">
+                Our Belief:
               </span>
-              <p className="text-text">{CEO_MESSAGE.pullQuote}</p>
+              <span aria-hidden className="absolute right-3 top-0 font-heading text-4xl leading-none text-white/15">
+                &rdquo;
+              </span>
+              <p className="relative text-sm font-medium italic leading-relaxed text-white tablet:whitespace-nowrap">{CEO_MESSAGE.pullQuote}</p>
             </div>
           </div>
         </div>
@@ -112,16 +149,16 @@ export default function HomePage() {
               return (
                 <div
                   key={intern.name}
-                  className="group flex w-1/2 flex-col items-center px-3 pb-6 text-center tablet:w-1/3 desktop:w-1/6"
+                  className="group flex w-1/2 flex-col items-center px-3 pb-8 text-center tablet:w-1/3 desktop:w-1/5"
                 >
                   <div
-                    className="relative size-24 overflow-hidden rounded-full shadow-soft ring-4 transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105 desktop:size-28"
+                    className="relative size-28 overflow-hidden rounded-full shadow-soft ring-[5px] transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105 tablet:size-32 desktop:size-40"
                     style={{ "--tw-ring-color": bubble.color } as React.CSSProperties}
                   >
-                    <Image src={intern.photo} alt={intern.name} fill className="object-cover object-top" />
+                    <Image src={intern.photo} alt={intern.name} fill sizes="(min-width: 1025px) 160px, 128px" className="object-cover object-top" />
                   </div>
-                  <span className="mt-3 text-sm font-bold text-heading">{intern.name}</span>
-                  <span className="text-xs text-muted">{intern.role}</span>
+                  <span className="mt-4 text-base font-bold text-heading">{intern.name}</span>
+                  <span className="mt-0.5 max-w-[11rem] text-sm leading-snug text-muted">{intern.role}</span>
                 </div>
               );
             })}
@@ -173,7 +210,7 @@ export default function HomePage() {
                     <div className="relative -mt-9 mb-2 flex size-11 items-center justify-center overflow-hidden rounded-full bg-white p-1.5 shadow ring-1 ring-border">
                       <Image src={b.logo} alt="" fill className="object-contain" />
                     </div>
-                    <h3 className="text-base font-bold text-primary">{b.name}</h3>
+                    <h3 className="text-base font-bold" style={{ color: b.color }}>{b.name}</h3>
                     <p className="mt-2 flex-1 text-sm text-text">{b.text}</p>
                     <span className="mt-4 text-sm font-semibold text-primary">
                       Learn More <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>

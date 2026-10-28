@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-// True while the user is scrolling down past `offset` px; flips back to false as soon as they
-// scroll up (or return near the top). Small jitters under `tolerance` px are ignored.
-export function useHideOnScroll(offset = 120, tolerance = 6): boolean {
+// `hidden` is true while the user is scrolling down past `offset` px; it flips back to false as soon
+// as they scroll up (or return near the top). Small jitters under `tolerance` px are ignored.
+// `atTop` is true while the page is within `topEdge` px of the top.
+export function useHideOnScroll(offset = 120, tolerance = 6, topEdge = 24): { hidden: boolean; atTop: boolean } {
   const [hidden, setHidden] = useState(false);
+  const [atTop, setAtTop] = useState(true);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -14,6 +16,7 @@ export function useHideOnScroll(offset = 120, tolerance = 6): boolean {
     const update = () => {
       frame = 0;
       const y = Math.max(window.scrollY, 0);
+      setAtTop(y <= topEdge);
       if (y <= offset) {
         setHidden(false);
       } else if (Math.abs(y - lastY) >= tolerance) {
@@ -31,7 +34,7 @@ export function useHideOnScroll(offset = 120, tolerance = 6): boolean {
       window.removeEventListener("scroll", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [offset, tolerance]);
+  }, [offset, tolerance, topEdge]);
 
-  return hidden;
+  return { hidden, atTop };
 }

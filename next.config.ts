@@ -4,6 +4,8 @@ import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 const nextConfig: NextConfig = {
   // Keep WordPress-style URLs (/jobs/, /work/) so existing links and SEO carry over
   trailingSlash: true,
+  // Hide the floating Next.js dev badge; compile/runtime errors still show
+  devIndicators: false,
   // Cache Components/PPR rely on setTimeout semantics the Cloudflare Workers runtime
   // doesn't fully support yet, which hangs every request until the platform kills it.
   serverExternalPackages: ["@electric-sql/pglite"],

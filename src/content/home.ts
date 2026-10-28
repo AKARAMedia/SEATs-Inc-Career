@@ -164,6 +164,8 @@ export const JOB_ANNOUNCEMENT_SLUGS = [
 export const BUSINESSES = [
   {
     name: "NOVA Marketing",
+    // Title colours are taken from each logo, darkened a little where needed to stay readable on white.
+    color: "#1f86c0",
     logo: "/media/2026/10/logo-nova.webp",
     photo: "/media/2026/10/nova-team.png",
     text: "Our digital marketing and e-commerce arm, helping brands grow online through content, advertising, and web development.",
@@ -171,6 +173,7 @@ export const BUSINESSES = [
   },
   {
     name: "LOKA Japanese Food & Beverage",
+    color: "#1d2089",
     logo: "/media/2026/10/logo-loka.webp",
     photo: "/media/2026/10/loka-sake-products.jpg",
     text: "LOKA imports and distributes Japanese and other food and beverage products to restaurants, hotels, supermarkets, and retail partners in Cambodia.",
@@ -178,6 +181,7 @@ export const BUSINESSES = [
   },
   {
     name: "S.E.A.T.S Farm",
+    color: "#5f9a1c",
     logo: "/media/2026/10/logo-seats-farm.webp",
     photo: "/media/2022/11/seatsfarm-interviews.jpg",
     text: "Agricultural production and development. We grow high-quality produce from Cambodia for local and global markets.",
@@ -185,6 +189,7 @@ export const BUSINESSES = [
   },
   {
     name: "PISA Food Retail",
+    color: "#e55020",
     logo: "/media/2026/10/logo-pisa.webp",
     photo: "/media/2026/10/pisa-retail.jpg",
     text: "Retail business of food and daily products. We bring quality products to more customers through our retail stores.",
