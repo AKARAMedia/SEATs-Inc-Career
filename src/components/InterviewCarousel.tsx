@@ -76,7 +76,7 @@ export default function InterviewCarousel({
       }}
     >
       <div
-        className="grid touch-pan-y select-none items-stretch justify-items-center [--step:72%] tablet:[--step:80%]"
+        className="grid touch-pan-y select-none items-stretch justify-items-center [--shrink:0.2] [--step:78%] tablet:[--shrink:0.16] tablet:[--step:80%]"
         onPointerDown={(e) => {
           dragX.current = e.clientX;
           setPaused(true);
@@ -103,12 +103,12 @@ export default function InterviewCarousel({
               key={i.name}
               aria-hidden={!isActive}
               onClick={() => !isActive && go(n)}
-              className={`col-start-1 row-start-1 flex w-[78%] flex-col transition-[transform,opacity,filter] duration-500 ease-out motion-reduce:transition-none tablet:w-[340px] ${
+              className={`col-start-1 row-start-1 flex w-[68%] flex-col transition-[transform,opacity,filter] duration-500 ease-out motion-reduce:transition-none tablet:w-[340px] ${
                 isActive ? "" : "cursor-pointer"
               }`}
               style={{
-                transform: `translateX(calc(var(--step) * ${d})) scale(${Math.max(1 - dist * 0.16, 0.6)})`,
-                opacity: dist > 2 ? 0 : isActive ? 1 : 0.55 - (dist - 1) * 0.2,
+                transform: `translateX(calc(var(--step) * ${d})) scale(calc(1 - var(--shrink) * ${dist}))`,
+                opacity: dist > 2 ? 0 : isActive ? 1 : 0.45 - (dist - 1) * 0.2,
                 filter: isActive ? "none" : "saturate(0.7)",
                 zIndex: 10 - dist,
                 pointerEvents: dist > 2 ? "none" : "auto",
