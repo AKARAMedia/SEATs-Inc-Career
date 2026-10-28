@@ -96,7 +96,6 @@ export default function HomePage() {
           </div>
           <div>
             <p className="eyebrow">{CEO_MESSAGE.eyebrow}</p>
-            <p className="mt-2 text-sm text-muted">{CEO_MESSAGE.eyebrowKhmer}</p>
             <h2 className="mt-3 text-3xl tracking-tight text-navy desktop:text-4xl">{CEO_MESSAGE.heading}</h2>
             <div className="mt-5 space-y-4 text-lg leading-relaxed text-text">
               {CEO_MESSAGE.paragraphs.map((p) => (
