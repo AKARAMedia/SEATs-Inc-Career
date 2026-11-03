@@ -26,10 +26,11 @@ const NEW_WITHIN_DAYS = 14;
 
 export default function JobCard({ job, index }: { job: PublicJob; index: number }) {
   const logo = departmentLogo(job.department);
-  const isNew = daysSince(job.postedAt) < NEW_WITHIN_DAYS;
+  const isNew = job.open && daysSince(job.postedAt) < NEW_WITHIN_DAYS;
   return (
     <Link
       href={`/jobs/${job.slug}`}
+      aria-label={job.open ? job.title : `${job.title} (closed)`}
       className="group flex h-full items-center gap-4 rounded-xl bg-white p-3 shadow-sm ring-1 ring-border transition hover:shadow-md hover:ring-primary/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <div className="relative size-20 shrink-0 tablet:size-[104px]">
@@ -54,6 +55,11 @@ export default function JobCard({ job, index }: { job: PublicJob; index: number 
         {isNew && (
           <span className="absolute left-1.5 top-1.5 rounded-full bg-red-500 px-2 py-0.5 text-[11px] font-bold leading-4 text-white shadow-sm">
             New
+          </span>
+        )}
+        {!job.open && (
+          <span className="absolute left-1.5 top-1.5 rounded-full bg-red-500 px-2 py-0.5 text-[11px] font-bold leading-4 text-white shadow-sm">
+            Closed
           </span>
         )}
       </div>

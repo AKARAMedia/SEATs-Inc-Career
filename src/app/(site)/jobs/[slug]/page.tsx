@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { departmentLogo } from "@/lib/departments";
 import { postedLabel } from "@/lib/job-format";
 import { splitJobDescription, type SectionKind } from "@/lib/job-sections";
-import { getOpenJob, JobsUnavailableError } from "@/lib/jobs";
+import { getJob, JobsUnavailableError } from "@/lib/jobs";
 import { getHrContact } from "@/lib/settings";
 import { TELEGRAM_HR } from "@/lib/links";
 import AutoRefresh from "@/components/AutoRefresh";
@@ -18,7 +19,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: PageProps<"/jobs/[slug]">) {
   const { slug } = await params;
-  const job = await getOpenJob(slug).catch(() => null);
+  const job = await getJob(slug).catch(() => null);
   return { title: job?.title ?? "Job" };
 }
 
@@ -52,7 +53,7 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
   let job;
   let contact;
   try {
-    [job, contact] = await Promise.all([getOpenJob(slug), getHrContact()]);
+    [job, contact] = await Promise.all([getJob(slug), getHrContact()]);
   } catch (err) {
     if (!(err instanceof JobsUnavailableError)) throw err;
     return (
@@ -99,7 +100,14 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
             </div>
 
             <div className="min-w-0">
-              <h1 className="text-2xl font-bold text-navy tablet:text-3xl">{job.title}</h1>
+              <h1 className="text-2xl font-bold text-navy tablet:text-3xl">
+                {job.title}
+                {!job.open && (
+                  <span className="ml-3 inline-block rounded-full bg-red-500 px-3 py-1 align-middle text-xs font-bold uppercase tracking-wide text-white">
+                    Closed
+                  </span>
+                )}
+              </h1>
 
               <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-text">
                 {job.workDays && (
@@ -141,12 +149,18 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
               </div>
 
               <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-                <a href={TELEGRAM_HR} target="_blank" rel="noopener noreferrer" className="btn-primary w-fit">
-                  Apply Via Telegram <span aria-hidden>→</span>
-                </a>
-                <a href="#apply-form" className="text-sm font-semibold text-primary hover:underline">
-                  or apply directly below ↓
-                </a>
+                {job.open ? (
+                  <>
+                    <a href={TELEGRAM_HR} target="_blank" rel="noopener noreferrer" className="btn-primary w-fit">
+                      Apply Via Telegram <span aria-hidden>→</span>
+                    </a>
+                    <a href="#apply-form" className="text-sm font-semibold text-primary hover:underline">
+                      or apply directly below ↓
+                    </a>
+                  </>
+                ) : (
+                  <p className="text-sm font-semibold text-muted">This position is no longer accepting applications.</p>
+                )}
                 <span className="text-xs text-muted" title={postedOn}>
                   {postedLabel(job.postedAt)}
                 </span>
@@ -185,7 +199,17 @@ export default async function JobDetailPage({ params }: PageProps<"/jobs/[slug]"
         </div>
 
         <div id="apply-form" className="border-t border-border pt-8">
-          <ApplyForm slug={job.slug} jobTitle={job.title} />
+          {job.open ? (
+            <ApplyForm slug={job.slug} jobTitle={job.title} />
+          ) : (
+            <p className="rounded-xl bg-surface p-6 text-center text-text">
+              This position is closed and is no longer accepting applications. Check our{" "}
+              <Link href="/jobs" className="font-semibold text-primary hover:underline">
+                open positions
+              </Link>{" "}
+              for current openings.
+            </p>
+          )}
         </div>
       </article>
     </div>

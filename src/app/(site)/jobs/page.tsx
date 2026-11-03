@@ -7,7 +7,7 @@ import JobsUnavailable from "@/components/JobsUnavailable";
 import JobsFilters from "@/components/JobsFilters";
 import JobsLimitSelect from "@/components/JobsLimitSelect";
 import { DEPARTMENTS, departmentLogo } from "@/lib/departments";
-import { loadOpenJobs } from "@/lib/jobs";
+import { loadJobs } from "@/lib/jobs";
 import { jobsHref, type JobsQuery } from "@/lib/jobs-url";
 import { TELEGRAM_HR } from "@/lib/links";
 
@@ -88,7 +88,7 @@ type SearchParams = { [key: string]: string | string[] | undefined };
 
 export default async function JobsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const params = await searchParams;
-  const { jobs: allJobs, unavailable } = await loadOpenJobs();
+  const { jobs: allJobs, unavailable } = await loadJobs();
 
   const q = firstValue(params.q).trim();
   const department = firstValue(params.department).trim();

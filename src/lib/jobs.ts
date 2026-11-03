@@ -12,9 +12,11 @@ export type PublicJob = {
   workplace: string;
   responsibilitiesHtml: string;
   postedAt: string;
+  // false once HR closes the position — still shown (not removed from the list), just marked closed.
+  open: boolean;
 };
 
-// Shape returned by GET https://seats-inc.com/api/jobs/ (open career jobs, already in display order).
+// Shape returned by GET https://seats-inc.com/api/jobs/ (career jobs, open and closed, already in display order).
 type ApiJob = {
   slug: string;
   title: string;
@@ -25,6 +27,7 @@ type ApiJob = {
   workDays: string;
   descriptionHtml: string;
   postedAt: string;
+  open: boolean;
 };
 
 const JOBS_API_URL = process.env.JOBS_API_URL ?? "https://seats-inc.com/api/jobs/";
@@ -60,6 +63,7 @@ async function fetchJobs(): Promise<PublicJob[]> {
         responsibilitiesHtml: j.descriptionHtml,
         // The API still reports the 2025 posting year; show these listings as 2026 postings.
         postedAt: j.postedAt.replace(/^2025-/, "2026-"),
+        open: j.open,
       }));
     } catch (err) {
       lastError = err;
@@ -80,7 +84,7 @@ export class JobsUnavailableError extends Error {
 // Edits happen in the seats-inc.com admin panel, a separate deployment — this app has no
 // way to receive an instant cache-invalidation signal from it, so edits (a new department
 // logo, a changed title) show up within about half a minute instead of immediately.
-const cachedJobs = withTtlCache("listOpenJobs", CACHE_TTL_MS, async (): Promise<PublicJob[]> => {
+const cachedJobs = withTtlCache("listJobs", CACHE_TTL_MS, async (): Promise<PublicJob[]> => {
   try {
     return (lastGood = await fetchJobs());
   } catch (err) {
@@ -93,7 +97,8 @@ const cachedJobs = withTtlCache("listOpenJobs", CACHE_TTL_MS, async (): Promise<
 // Concurrent requests share one fetch (with its retries) instead of each hammering a struggling API
 let inflight: Promise<PublicJob[]> | null = null;
 
-export function listOpenJobs(): Promise<PublicJob[]> {
+// Open and closed jobs both included — see PublicJob.open. Open jobs sort first (see the API).
+export function listJobs(): Promise<PublicJob[]> {
   inflight ??= cachedJobs().finally(() => {
     inflight = null;
   });
@@ -101,9 +106,9 @@ export function listOpenJobs(): Promise<PublicJob[]> {
 }
 
 // For pages that can render without the list: reports an outage instead of throwing
-export async function loadOpenJobs(): Promise<{ jobs: PublicJob[]; unavailable: boolean }> {
+export async function loadJobs(): Promise<{ jobs: PublicJob[]; unavailable: boolean }> {
   try {
-    return { jobs: await listOpenJobs(), unavailable: false };
+    return { jobs: await listJobs(), unavailable: false };
   } catch (err) {
     if (!(err instanceof JobsUnavailableError)) throw err;
     console.warn(err.message, err.cause);
@@ -111,7 +116,7 @@ export async function loadOpenJobs(): Promise<{ jobs: PublicJob[]; unavailable: 
   }
 }
 
-export async function getOpenJob(slug: string): Promise<PublicJob | null> {
-  const jobs = await listOpenJobs();
+export async function getJob(slug: string): Promise<PublicJob | null> {
+  const jobs = await listJobs();
   return jobs.find((j) => j.slug === slug) ?? null;
 }
