@@ -8,7 +8,7 @@ type Bubble = { color: string; clip: string };
 
 const AUTOPLAY_MS = 4000;
 // -1 slides the cards left to right (shows the previous card each beat); 1 slides them right to left.
-const AUTOPLAY_DIRECTION = -1;
+const AUTOPLAY_DIRECTION = 1;
 
 // Cover-flow carousel: the active card sits centred at full size, its neighbours shrink, dim and
 // tuck in behind it. Card markup is unchanged from the old scroll strip. Opens on `startName` and

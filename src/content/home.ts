@@ -39,13 +39,6 @@ export const INTERVIEWS: Interview[] = [
       "4.5 years and still going strong. Juggling orders, payments, deliveries and last-minute issues is messy but never boring; it keeps me thinking fast and organized. What keeps me here is the team energy: we support each other, communicate openly and solve problems together.",
   },
   {
-    name: "Poch Bunthy",
-    role: "GENERAL MANAGER, NOVA MARKETING",
-    photo: "/media/2026/10/interview-bunthy.jpg",
-    quote:
-      "Our visionary General Manager, shaping Nova Marketing's journey since day one. His dedication and leadership are at the heart of our success. Stay tuned for his story.",
-  },
-  {
     name: "Kazuhiro Okuda",
     role: "GENERAL MANAGER, AGRI-BUSINESS",
     photo: "/media/2026/10/interview-okuda.jpg",
@@ -63,6 +56,13 @@ export const INTERVIEWS: Interview[] = [
     role: "SOCIAL MEDIA MANAGER",
     photo: "/media/2026/10/interns/raksa.jpg",
     quote: "Our Social Media Manager at S.E.A.T.S Inc., who has been with us for years. Stay tuned for her story.",
+  },
+  {
+    name: "Poch Bunthy",
+    role: "GENERAL MANAGER, NOVA MARKETING",
+    photo: "/media/2026/10/interview-bunthy.jpg",
+    quote:
+      "Our visionary General Manager, shaping Nova Marketing's journey since day one. His dedication and leadership are at the heart of our success. Stay tuned for his story.",
   },
 ];
 
