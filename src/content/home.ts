@@ -152,14 +152,6 @@ export const SOCIAL_POSTS: SocialPost[] = [
   },
 ];
 
-export const JOB_ANNOUNCEMENT_SLUGS = [
-  "product-development-agribusiness",
-  "representative-of-sales-and-order-management",
-  "supervisor-of-operations",
-  "copywriter",
-  "freelance-sales-and-marketing-advisor-2",
-];
-
 export const BUSINESSES = [
   {
     name: "NOVA Marketing",

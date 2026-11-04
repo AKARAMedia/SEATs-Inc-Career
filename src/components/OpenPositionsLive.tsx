@@ -26,9 +26,9 @@ export default function OpenPositionsLive() {
   return (
     <>
       {state.status === "loading" && (
-        <ul className="mt-10 flex flex-wrap justify-center gap-4 text-left">
+        <ul className="mt-10 grid grid-cols-1 gap-4 text-left tablet:grid-cols-2">
           {Array.from({ length: 4 }, (_, i) => (
-            <li key={i} className="w-full animate-pulse tablet:w-[calc(50%-8px)]">
+            <li key={i} className="animate-pulse">
               <div className="h-[104px] rounded-xl border border-border bg-border/60" />
             </li>
           ))}
@@ -44,9 +44,9 @@ export default function OpenPositionsLive() {
       )}
 
       {state.status === "ready" && state.jobs.length > 0 && (
-        <ul className="mt-10 flex flex-wrap justify-center gap-4 text-left">
+        <ul className="mt-10 grid grid-cols-1 gap-4 text-left tablet:grid-cols-2">
           {state.jobs.map((job, i) => (
-            <li key={job.slug} className="w-full tablet:w-[calc(50%-8px)]">
+            <li key={job.slug} className="h-full">
               <JobCard job={job} index={i} />
             </li>
           ))}
